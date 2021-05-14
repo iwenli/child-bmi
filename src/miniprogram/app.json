@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "debug": false,
+  "usingComponents": {
+    "ff-canvas": "@antv/f2-canvas",
+    "cu-custom": "/assets/colorui/components/cu-custom",
+    "image-preload": "/components/image-preload/index",
+    "timePicker": "/components/timePicker/timePicker",
+    "chart-column": "/components/chart/chartColumn"
+  }
+}

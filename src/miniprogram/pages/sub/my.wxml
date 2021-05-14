@@ -1,0 +1,84 @@
+<scroll-view scroll-y class="scrollPage">
+  <view class="UCenter-bg padding">
+    <view class="image round">
+      <open-data class="" type="userAvatarUrl" lang="zh_CN"></open-data>
+    </view>
+
+    <view class="text-xl padding-top-sm">
+      <open-data type="userNickName" lang="zh_CN"></open-data>
+    </view>
+    <view class="padding-top-sm">
+      <text>{{app.name}}</text>
+      <text class="margin-left-sm text-df">V{{app.version}}</text>
+    </view>
+    <view class="text-sm">by:{{app.author}}</view>
+    <image
+      src="https://btx-1252047676.cos.ap-beijing.myqcloud.com/miniapp/image/member/eJrOuxyzB4aWcbde6f5e83388a096d28fab7339d56fd.gif"
+      mode="scaleToFill" class="gif-wave"></image>
+  </view>
+  <view class="padding flex text-center text-grey bg-white shadow-warp">
+    <view class="flex flex-sub flex-direction solid-right">
+      <view class="text-xxl text-orange">{{userCount}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-people"></text> 用户数
+      </view>
+    </view>
+    <view class="flex flex-sub flex-direction solid-right">
+      <view class="text-xxl text-blue">{{babyCount}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-baby"></text> 宝贝数
+      </view>
+    </view>
+    <view class="flex flex-sub flex-direction">
+      <view class="text-xxl text-green">{{subCount}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-notice"></text> 订阅数
+      </view>
+    </view>
+  </view>
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+    <view class="cu-item arrow">
+      <view class="content" bindtap="handleSubscribe">
+        <text class="cuIcon-noticefill text-blue"></text>
+        <text class="text-grey">订阅提醒</text>
+      </view>
+    </view>
+    <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="feedback">
+        <text class="cuIcon-writefill text-cyan"></text>
+        <text class="text-grey">意见反馈</text>
+      </button>
+    </view>
+    <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="contact">
+        <text class="cuIcon-servicefill text-orange"></text>
+        <text class="text-grey">联系客服</text>
+      </button>
+    </view>
+    <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="openSetting">
+        <text class="cuIcon-repairfill text-pink"></text>
+        <text class="text-grey">授权设置</text>
+      </button>
+    </view>
+    <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="share">
+        <text class="cuIcon-forwardfill text-green"></text>
+        <text class="text-grey">分享好友</text>
+      </button>
+    </view>
+    <view class="cu-item arrow">
+      <view class="content" bindtap="showQrcode">
+        <text class="cuIcon-appreciatefill text-red"></text>
+        <text class="text-grey">赞赏支持</text>
+      </view>
+    </view>
+    <view class="cu-item arrow">
+      <view class="content" bindtap="CopyLink" data-link="https://github.com/iwenli/child-bmi">
+        <text class="cuIcon-github text-grey"></text>
+        <text class="text-grey">GitHub</text>
+      </view>
+    </view>
+  </view>
+  <view class="cu-tabbar-height"></view>
+</scroll-view>

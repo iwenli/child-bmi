@@ -1,0 +1,13 @@
+<!--components/chart/chartColumn.wxml-->
+<wxs src="./../../utils/util.wxs" module="util" />
+<view class="warp">
+  <view class="{{cur===index?'item select':'item'}}" bindtap="tap" wx:for="{{list}}" wx:key="key" data-index="{{index}}">
+    <view class="key">{{item.Key}}</view>
+    <view class="draw">
+      <view class="article">
+        <view class="col" style="width:{{util.formater.percentage(item.Value/list[0].Value)}};"></view>
+      </view>
+      <view class="tag">{{item.Value}}</view>
+    </view>
+  </view>
+</view>

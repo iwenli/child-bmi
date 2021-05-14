@@ -1,0 +1,56 @@
+<!--pages/sub/user.wxml-->
+<wxs src="./../../utils/util.wxs" module="util" />
+<cu-custom bgColor="bg-white">
+  <view slot="content">积分统计</view>
+</cu-custom>
+<view class="page">
+  <view class="card">
+    <view class="number">
+      <view class="row">
+        <view class="item">
+          <view>累计可用积分</view>
+          <view class="num">{{util.formater.toPrice(homeData.MpAppPoints.Lave)}}</view>
+        </view>
+      </view>
+      <view class="row margin-top-xl">
+        <view class="item">
+          <view>近一个月要过期积分</view>
+          <view class="num">{{util.formater.toPrice(homeData.MpAppPoints.MonthExpiredPoints)}}</view>
+        </view>
+      </view>
+      <view class="row margin-top-xl">
+        <view class="item">
+          <view>500 积分以下总积分数</view>
+          <view class="num">
+            <text>{{util.formater.toPrice(homeData.MpAppPoints.LT500)}}</text>
+            <text
+              class="price">（￥{{util.formater.toPrice(homeData.MpAppPoints.LT500*homeData.MpAppPoints.Ratio)}}）</text>
+          </view>
+        </view>
+      </view>
+      <view class="row margin-top-xl">
+        <view class="item">
+          <view>500 积分以上总积分数</view>
+          <view class="num">
+            <text>{{util.formater.toPrice(homeData.MpAppPoints.GE500)}}</text>
+            <text
+              class="price">（￥{{util.formater.toPrice(homeData.MpAppPoints.GE500*homeData.MpAppPoints.Ratio)}}）</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="remark">* 截至前一天</view>
+    </view>
+  </view>
+
+  <view class="card chart">
+    <view class="row">
+      <view class="title">每月积分发放/消耗趋势</view>
+      <view class="unit">单位：百万</view>
+    </view>
+    <view class="canvas">
+      <ff-canvas id="scroll" canvas-id="scrollLine" opts="{{ opts }}"></ff-canvas>
+    </view>
+  </view>
+  <view class='cu-tabbar-height'></view>
+</view>

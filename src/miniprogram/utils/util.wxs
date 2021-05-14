@@ -1,0 +1,53 @@
+/**
+ * 计算百分比
+ * @param   {number} num   分子
+ * @param   {number} total 分母
+ * @returns {number} 返回数百分比
+ */
+var Percentage = function (num, total) {
+  if (num == 0 || total == 0) {
+    return 0;
+  }
+  return (Math.round(num / total * 10000) / 100.00) + '%'; // 小数点后两位百分比
+}
+var isSameDay = function (date1, date2) {
+  return getDate(date1).setHours(0, 0, 0, 0) === getDate(date2).setHours(0, 0, 0, 0)
+}
+var formatNumber = function (n) {
+  n = n.toString()
+  return n[1] ? n : '0' + n
+}
+
+
+var formater = {
+  /**
+   * 百分比格式化
+   * @param val 
+   */
+  percentage: function (val) {
+    val = val || 0
+    return (val * 100).toFixed(2) + '%'
+  },
+  // 保留2位小数  并逗号分隔
+  toPrice: function (val) {
+    if (!val) return '-'
+    return ((val * 1).toFixed(0) * 1).toLocaleString()
+  },
+  formatDate: function (date, c = '.') {
+    date = date.replace(getRegExp('-', 'g'), "/")
+    if (typeof date === 'string') date = getDate(date)
+    var today = getDate()
+    if (isSameDay(date, today)) {
+      return '今日'
+    }
+    var year = date.getFullYear()
+    var month = date.getMonth() + 1
+    var day = date.getDate()
+    return [year, month, day].map(formatNumber).join(c)
+  }
+}
+
+module.exports = {
+  Percentage: Percentage,
+  formater: formater
+}

@@ -1,0 +1,23 @@
+<!--pages/sub/home.wxml-->
+<wxs src="./../../utils/util.wxs" module="util" />
+<cu-custom bgColor="main-bg-100 text-white">
+  <view slot="content">{{curBaby.name||app.name}}</view>
+</cu-custom>
+<!-- <scroll-view class="" refresher-enabled="true" refresher-default-style="black" refresher-background="#08B464" style="height:calc(100vh - {{(CustomBar+StatusBar)}}px)" bindscroll="handleScroll" bindrefresherrefresh="onRefresh" refresher-triggered="{{triggered}}"> -->
+  <view class="main-bg-100 text-white padding">
+    <view class="text-center ">
+      <text class="main-text-big font-mono">110.00</text>
+      <text class="margin-left-xs text-sm font-ttqy">公斤</text>
+    </view>
+    <view class="bt-group">
+      <button class="{{measure===1?'cu-btn select':'cu-btn'}}" data-measure="1"
+        bindtap="handleChangeMeasure">身高</button>
+      <button class="{{measure===2?'cu-btn select':'cu-btn'}}" data-measure="2"
+        bindtap="handleChangeMeasure">体重</button>
+    </view>
+    <view class="canvas">
+      <ff-canvas id="scroll" canvas-id="scrollLine" opts="{{ opts }}"></ff-canvas>
+    </view>
+  </view>
+  <view class='cu-tabbar-height'></view>
+<!-- </scroll-view> -->

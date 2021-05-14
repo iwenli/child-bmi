@@ -1,0 +1,13 @@
+<!--components/progress.wxml-->
+<wxs src="./../utils/util.wxs" module="util" />
+<view class="progress">
+  <view class="cu-progress round sm">
+    <view class="col bg-blue" style="width:{{util.formater.percentage(speed)}};"></view>
+  </view>
+  <view class="text">
+    <view>{{name}}</view>
+    <view class="num">
+      <text>{{util.formater.percentage(speed)}}</text> / <text>{{util.formater.toPrice(max)}}</text>
+    </view>
+  </view>
+</view>

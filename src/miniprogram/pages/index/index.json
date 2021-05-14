@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "home": "../sub/home",
+    "points": "../sub/points",
+    "my": "../sub/my"
+  }
+}

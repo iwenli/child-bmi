@@ -1,0 +1,44 @@
+/* components/chart/chartColumn.wxss */
+.warp {
+  background-color: transparent;
+}
+.warp .item {
+  padding: 24rpx 0 24rpx 4rpx;
+}
+.warp .item.select {
+  background: #EBEDF0;
+}
+.warp .item .key {
+  font-size: 24rpx;
+  line-height: 24rpx;
+  color: rgba(0, 42, 104, 0.8)
+}
+
+.warp .item .draw {
+  margin-top: 16rpx;
+}
+
+.warp .item .article {
+  width: 75%;
+  display: inline-block;
+}
+
+.warp .item .article .col {
+  background: #4F86F7;
+  border-radius: 8rpx;
+  height: 32rpx;
+  width: 100%;
+}
+
+.warp .item .tag {
+  font-size: 22rpx;
+  line-height: 30rpx;
+  position: absolute;
+  color: #4F86F7;
+  font-family: JetBrains Mono;
+  display: inline;
+  margin-left: 10rpx;
+  background: rgba(79, 134, 247, 0.15);
+  border-radius: 8rpx;
+  padding: 2rpx 8rpx;
+}

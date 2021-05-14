@@ -1,0 +1,5 @@
+/**index.wxss**/
+/*  */
+.add-action .cu-btn {
+  background: var(--gradualGreen) !important;
+}
