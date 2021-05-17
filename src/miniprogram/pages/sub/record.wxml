@@ -1,0 +1,43 @@
+<!--miniprogram/pages/sub/record.wxml-->
+<view class='cu-custom'>
+  <view class="cu-bar fixed text-white" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='cuIcon-back'></text> 返回
+    </navigator>
+    <view class='content' style='top:{{StatusBar}}px;'>记录</view>
+  </view>
+</view>
+<view>
+  <view class="bg-gradual-green" style="height:{{CustomBar+StatusBar+30}}px"></view>
+  <view class="bg-white page padding-sm padding-top"
+    style="margin-top: -30px;height:calc(100vh - {{CustomBar+StatusBar}}px)">
+    <view class="main-bg-20 scale-wrap">
+      <view class="row">
+        <view class="title">选择身高
+        </view>
+        <view class="unit">单位：cm</view>
+      </view>
+      <view class="content">
+        <view class='scale-title'>你的身高</view>
+        <view class='scale-container'>
+          <view class='scale-value'>{{height}}cm
+            <iconfont icon="icon-shengao"></iconfont>
+          </view>
+
+          <view class='scale-view'>
+            <scale min="80" max="230" int="{{false}}" single="10" h="40" active="{{height}}" styles="{{styles}}"
+              direction="vertical" id="height" bindvalue="bindvalue"></scale>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="main-bg-20 scale-wrap">
+      <view class="row">
+        <view class="title">选择体重
+        </view>
+        <view class="unit">单位：kg</view>
+      </view>
+      <view class="content">1</view>
+    </view>
+  </view>
+</view>

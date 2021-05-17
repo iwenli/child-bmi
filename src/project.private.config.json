@@ -1,0 +1,29 @@
+{
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "首页",
+          "pathName": "pages/index/index",
+          "query": "page=user",
+          "scene": null
+        },
+        {
+          "name": "pages/sub/record",
+          "pathName": "pages/sub/record",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

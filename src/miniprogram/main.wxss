@@ -7,23 +7,62 @@ page {
   --main-color-20: rgba(8, 180, 100, .2);
   --black-98: rgba(26, 26, 26, .98);
 
-  --big-size:100rpx;
+  --big-size: 100rpx;
 }
 
-.main-color-100{
+.main-color-100 {
   color: var(--main-color-100);
 }
-.main-color-60{
+
+.main-color-60 {
   color: var(--main-color-60);
 }
 
-.main-bg-100{
+.main-bg-100 {
   background-color: var(--main-color-100);
 }
-.main-bg-60{
+
+.main-bg-60 {
   background-color: var(--main-color-60);
 }
 
-.main-text-big{
+.main-bg-20 {
+  background-color: var(--main-color-20);
+}
+
+.main-text-big {
   font-size: var(--big-size);
+}
+
+
+.scale-wrap {
+  margin-top: 40rpx;
+  border-radius: 16rpx;
+  padding: 48rpx;
+}
+
+.scale-wrap .row {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: space-between;
+  max-width: 100%;
+}
+
+.scale-wrap .row .title {
+  font-size: 40rpx;
+  line-height: 40rpx;
+  letter-spacing: 1px;
+  color: var(--main-color-100);
+  font-family: 'TTQinYuanJ-W4';
+}
+
+.scale-wrap .row .unit {
+  font-size: 24rpx;
+  line-height: 24rpx;
+  color: var(--main-color-50);
+}
+
+.scale-wrap .content {
+  margin-top:48rpx;
 }

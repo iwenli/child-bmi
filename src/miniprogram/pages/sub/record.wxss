@@ -1,0 +1,24 @@
+/* miniprogram/pages/sub/record.wxss */
+.page {
+  border-top-left-radius: 40rpx;
+  border-top-right-radius: 40rpx;
+}
+iconfont {
+  font-size: 1.6rem;
+}
+
+.scale-container {
+  display: flex;
+  align-items: center;
+  height: 600rpx;
+  justify-content: space-between;
+}
+
+.scale-container .scale-value {
+  height: 100%;
+}
+
+.scale-view {
+  width: 25%;
+  height: 100%;
+}
