@@ -32,6 +32,7 @@
       "outputPath": ""
     },
     "enableEngineNative": false,
+    "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
@@ -43,7 +44,7 @@
   "compileType": "miniprogram",
   "libVersion": "2.15.0",
   "appid": "wxe71b9e9e17760a42",
-  "projectname": "儿童身高体重",
+  "projectname": "%E5%84%BF%E7%AB%A5%E8%BA%AB%E9%AB%98%E4%BD%93%E9%87%8D",
   "debugOptions": {
     "hidedInDevtools": []
   },

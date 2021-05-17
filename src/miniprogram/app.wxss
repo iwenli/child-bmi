@@ -25,11 +25,10 @@ ff-canvas {
 
 
 .bt-group {
-  margin-top: 48rpx;
   width: 100%;
   background: rgba(255,255,255,.98);
   border-radius: 48rpx;
-  height: 80rpx;
+  height: 60rpx;
   padding: 4rpx;
 }
 

@@ -130,8 +130,6 @@ Component({
           const items = ev.items;
           items[0].value = (items[0].value * 1000000) + '';
           items[1].value = (items[1].value * 1000000) + '';
-          // items[0].name = '发放';
-          // items[1].name = '消耗';
           ev.items.length = 2;
         }
       });

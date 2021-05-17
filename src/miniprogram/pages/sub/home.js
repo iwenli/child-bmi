@@ -8,12 +8,24 @@ let context;
 let chart = null;
 
 function initChart(canvas, width, height, F2) {
+  F2.Global.setTheme({
+  colors: [ '#F04864', '#D66BCA', '#8543E0', '#8E77ED', '#3436C7', '#737EE6', '#223273', '#7EA2E6' ],
+  pixelRatio: 20,
+  axis: {
+  label: (text, index, total) => {
+    const cfg = {
+      textAlign: 'center',
+      fill: 'rgba(255,255,255, 0.6)',
+    };
+    return cfg;
+  }}
+});
   chart = new F2.Chart({
     el: canvas,
     width,
     height,
-    animate: false,
-    padding: [40, 10, 'auto', 25]
+    animate: true,
+    padding: [40, 10, 'auto', '25']
   });
 
   return chart;
@@ -78,70 +90,80 @@ Component({
     __getData() {
       let data = constData.BOY_7_HEIGHT.data
 
-      let minList = data.map(m => {
+      let minList = data.map((m,i) => {
         return {
-          Type: '最小值',
-          Id: m.key,
-          Key: m.key,
-          Value: m.valueSD3_,
-          // y: '最小值',
-          // x: m.key,
-          // value: m.valueSD3_
+          type: '最小值',
+          id: i,
+          x: m.key,
+          y: m.valueSD3_,
         }
       })
-      let maxList = data.map(m => {
+       let maxList = data.map((m,i) => {
         return {
-          Type: '最大值',
-          Id: m.key,
-          Key: m.key,
-          Value: m.valueSD3,
-          // y: '最大值',
-          // x: m.key,
-          // value: m.valueSD3
+          type: '最大值',
+          id: i,
+          x: m.key,
+          y: m.valueSD3,
         }
       })
-
-
-      let list = data.map(m => {
-        return {
-          Type: '中位数',
-          Id: m.key,
-          Key: m.key,
-          Value: m.value,
-          // y: '中位数',
-          // x: m.key,
-          // value: m.value
-        }
-      })
-
-      return [...list, ...maxList, ...minList]
+      return [...maxList, ...minList]
     },
-    __render: function (type) {
+    __render: function () {
       if (!chart) return
       chart.clear(); // 清除
       let data = context.__getData()
-      debugger
-      let tickCount = 6 * 2;
-      let max = data[data.length - 1].Id;
-      let min = data[data.length - 1 - tickCount].Id;
-      let values = data.map(m => m.Key);
+      let tickCount = 4;
+      let max = data[data.length - 1].id;
+      let min = data[data.length - 1 - tickCount].id;
       chart.source(data);
-      chart.scale('Id', {
+
+      chart.scale('id', {
         max: max,
         min: min,
         formatter: (id) => {
-          let res = data.filter(m => m.Id === id);
-          if (res && res.length === 2) return res[0].Key || 'NAN'
+          let res = data.filter(m => m.id === id);
+          if (res && res.length === 2) return( res[0].x+'周' )|| 'NAN'
           return ''
         },
-        tickCount: 4,
-        alias: '日期'
       });
+      // chart.axis('id', false)
+      // chart.axis('y', false)
+//       chart.axis('id', {
+//   label: (text, index, total) => {
+//     const cfg = {
+//       textAlign: 'center',
+//       fill: 'rgba(255,255,255, 0.6)',
+//     };
+//     // 第一个点左对齐，最后一个点右对齐，其余居中，只有一个点时左对齐
+//     if (index === 0) {
+//       cfg.textAlign = 'start';
+//     }
+//     if (index > 0 && index === total - 1) {
+//       cfg.textAlign = 'end';
+//     }
+//     // cfg.text 支持文本格式化处理
+//       // let res = data.filter(m => m.id === text*1);
+//       //     if (res && res.length === 2) cfg.text = ( res[0].x+'周' )|| ''
+//     return cfg;
+//   }
+// });
+// chart.axis('y', {
+//   label: (text, index, total) => {
+//     const cfg = {
+//       textAlign: 'center',
+//       fill: 'rgba(255,255,255, 0.6)',
+//     };
+//     return cfg;
+//   }
+// });
+
+
+
       chart.tooltip({
         showCrosshairs: true,
         showXTip: true,
         crosshairsStyle: {
-          stroke: 'rgba(79,134,247, 0.6)',
+          stroke: 'rgba(255,255,255, 0.6)',
           lineWidth: 1
         }, // 配置辅助线的样式
         showItemMarker: false,
@@ -152,24 +174,25 @@ Component({
         },
         nameStyle: {
           fill: '#4F86F7',
-          fontSize: 14,
+          fontSize: 11,
         },
         valueStyle: {
           fill: '#4F86F7',
-          fontSize: 14,
+          fontSize: 11,
         },
         onShow(ev) {
-          const items = ev.items;
-          items[0].value = (items[0].value * 1000000) + '';
-          items[1].value = (items[1].value * 1000000) + '';
-          // items[0].name = '发放';
-          // items[1].name = '消耗';
+          // const items = ev.items;
+          // debugger
+          // items[0].y = (items[0].y) + '';
+          // items[1].y = (items[1].y) + '';
+          // // items[0].name = '发放';
+          // // items[1].name = '消耗';
           ev.items.length = 2;
         }
       });
 
-      chart.area().position('Id*Value').color('Type', ['l(-90) 0:#ffffff 0.5:#4F86F7 1:#4F86F7', 'l(-90) 0:#ffffff 0.5:#FF6A5E 1:#FF6A5E']).shape('smooth');
-      chart.line().position('Id*Value').color('Type', ['#4F86F7', '#FF6A5E']).shape('smooth');
+      chart.area().position('id*y').color('type', ['l(-90) 0:#08B464 0.6:#4F86F7 1:#4F86F7', 'l(-90) 0:#08B464 0.8:#08B464 1:#FF6A5E']).shape('smooth');
+      chart.line().position('id*y').color('type', ['#4F86F7', '#FF6A5E']).shape('smooth');
 
       chart.interaction('pan');
       // 定义进度条
@@ -228,8 +251,10 @@ Component({
       context.setData({
         app: config.application
       })
-      debugger
+
+      setTimeout(() => {
       this._getTrends()
+      }, 1000);
     },
     ready() {
     }

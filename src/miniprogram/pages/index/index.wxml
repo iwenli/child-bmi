@@ -1,6 +1,6 @@
 <home wx:if="{{PageCur=='home'}}" bindparentNavigateTo="go"></home>
-<!-- <points wx:if="{{PageCur=='home'}}" bindparentNavigateTo="go"></points> -->
-<my wx:if="{{PageCur=='my'}}" bindparentNavigateTo="go"></my>
+<points wx:if="{{PageCur=='my'}}" bindparentNavigateTo="go"></points>
+<!-- <my wx:if="{{PageCur=='my'}}" bindparentNavigateTo="go"></my> -->
 <view class="cu-bar tabbar bg-white shadow foot">
   <block wx:for="{{barItems}}" wx:key="key">
     <view wx:if="{{!item.action}}" bindtap="NavChange" data-cur="{{item.key}}" class="action {{PageCur==item.key?ActionColor:DefaultColor}}">
