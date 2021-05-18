@@ -18,7 +18,7 @@ styles [object]  // 自定义卡尺颜色  注意： 仅支持 #dbdbdb  或者re
 <!-- 横向 -->
 <view class='wrapper horizontal-box' id='scale-wrapper' style='background:{{styles.bgoutside}}' wx:if="{{direction=='horizontal'}}">
   <view class='scale-mask' wx:if="{{!scroll}}"></view>
-  <view class='zz' style='border-left-color:{{styles.lineSelect}}'></view>
+  <view class='zz' style='border-top-color:{{styles.lineSelect}}'></view>
   <scroll-view 
     class='scroll-view' 
     scroll-x="true" 
@@ -91,7 +91,7 @@ styles [object]  // 自定义卡尺颜色  注意： 仅支持 #dbdbdb  或者re
               wx:for-index="idx"
               wx:for="{{10}}" 
               wx:key="{{idx}}"
-              style="height:{{single}}px;width:{{idx==4||idx==9?'80':'60'}}%;border-color:{{styles.line}};"
+              style="height:{{single}}px;width:{{(idx+1)%10==5?'70':((idx+1)%10==0)?'80':'60'}}%;border-color:{{styles.line}};"
               >
               </view>
           </view>

@@ -40,7 +40,7 @@ Component({
     // 每个格子的实际行度 （单位px ，相对默认值）
     single: {
       type: Number,
-      value: 2
+      value: 20
     },
     // 高度
     h: {

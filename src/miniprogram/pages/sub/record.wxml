@@ -10,34 +10,54 @@
 <view>
   <view class="bg-gradual-green" style="height:{{CustomBar+StatusBar+30}}px"></view>
   <view class="bg-white page padding-sm padding-top"
-    style="margin-top: -30px;height:calc(100vh - {{CustomBar+StatusBar}}px)">
+    style="margin-top: -30px;min-height:calc(100vh - {{CustomBar+StatusBar}}px)">
+    <view class="scale-wrap-1 flex align-ceter justify-between">
+      <picker class="cu-btn round main-bg-60 text-white" mode="date" value="{{date}}" start="1900-01-01" end="{{date}}" bindchange="bindDateChange">
+        <view class="picker">
+          <text>{{date}}</text>  <text class="margin-left-sm cuIcon-edit"></text> 
+        </view>
+      </picker>
+      <button class="cu-btn round bg-gradual-green" bindtap="handleSubmit">保存</button>
+    </view>
     <view class="main-bg-20 scale-wrap">
       <view class="row">
-        <view class="title">选择身高
+        <view class="title">
+          <text>身高</text>
+          <text class="margin-left font-mono">{{height}}</text>
         </view>
         <view class="unit">单位：cm</view>
       </view>
       <view class="content">
-        <view class='scale-title'>你的身高</view>
-        <view class='scale-container'>
-          <view class='scale-value'>{{height}}cm
-            <iconfont icon="icon-shengao"></iconfont>
+        <view class='scale-container vertical'>
+          <view class='scale-value'>
+            <text class="iconfont icon-shengao" style="transform: scaleY({{height*0.9/maxHeight+0.9}})"></text>
           </view>
-
           <view class='scale-view'>
-            <scale min="80" max="230" int="{{false}}" single="10" h="40" active="{{height}}" styles="{{styles}}"
-              direction="vertical" id="height" bindvalue="bindvalue"></scale>
+            <scale min="{{minHeight}}" max="{{maxHeight}}" int="{{false}}" single="10" active="{{height}}"
+              styles="{{styles}}" direction="vertical" id="height" bindvalue="bindvalue"></scale>
           </view>
         </view>
       </view>
     </view>
     <view class="main-bg-20 scale-wrap">
       <view class="row">
-        <view class="title">选择体重
+        <view class="title">
+          <text>体重</text>
+          <text class="margin-left font-mono">{{weight}}</text>
         </view>
         <view class="unit">单位：kg</view>
       </view>
-      <view class="content">1</view>
+      <view class="content">
+        <view class='scale-container horizontal'>
+          <view class='scale-value'>
+            <text class="iconfont icon---shengaotizhong" style="transform: scaleX({{weight*0.7/maxWeight+0.9}})"></text>
+          </view>
+          <view class='scale-view'>
+            <scale min="{{minWeight}}" max="{{maxWeight}}" int="{{false}}" h="40" single="10" active="{{weight}}"
+              styles="{{styles}}" id="weight" bindvalue="bindvalue"></scale>
+          </view>
+        </view>
+      </view>
     </view>
   </view>
 </view>

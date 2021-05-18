@@ -3,17 +3,19 @@
 <cu-custom bgColor="main-bg-100 text-white">
   <view slot="content">{{curBaby.name||app.name}}</view>
 </cu-custom>
-<scroll-view class="" refresher-enabled="true" refresher-default-style="black" refresher-background="#08B464" style="height:calc(100vh - {{(CustomBar+StatusBar)}}px)" bindscroll="handleScroll" bindrefresherrefresh="onRefresh" refresher-triggered="{{triggered}}"> 
+<!-- 
+refresher-enabled="false" refresher-default-style="black" refresher-background="#08B464"
+  bindscroll="handleScroll" bindrefresherrefresh="onRefresh" refresher-triggered="{{triggered}}" -->
+<scroll-view class="" style="height:calc(100vh - {{(CustomBar+StatusBar)}}px)">
   <view class="main-bg-100 text-white padding-top">
-  <view class="padding">
-    <view class="bt-group">
-      <button class="{{measure===1?'cu-btn select':'cu-btn'}}" data-measure="1"
-        bindtap="handleChangeMeasure">身高</button>
-      <button class="{{measure===2?'cu-btn select':'cu-btn'}}" data-measure="2"
-        bindtap="handleChangeMeasure">体重</button>
+    <view class="padding">
+      <view class="bt-group">
+        <button class="{{measure===1?'cu-btn select':'cu-btn'}}" data-measure="1"
+          bindtap="handleChangeMeasure">身高</button>
+        <button class="{{measure===2?'cu-btn select':'cu-btn'}}" data-measure="2"
+          bindtap="handleChangeMeasure">体重</button>
+      </view>
     </view>
-  </view>
-  
     <view class="text-center margin-top">
       <text class="main-text-big font-mono">110.00</text>
       <text class="margin-left-xs text-sm font-ttqy">公斤</text>
@@ -22,5 +24,21 @@
       <ff-canvas id="scroll" canvas-id="scrollLine" opts="{{ opts }}"></ff-canvas>
     </view>
   </view>
+  <view class='scale-container horizontal'>
+    <view class='scale-view'>
+      <scale min="10" max="100" int="{{false}}" h="40" single="10" active="{{weight}}"
+              styles="{{styles}}" id="weight" bindvalue="bindvalue"></scale>
+    </view>
+  </view>
+  <!-- <scroll-view class="childs-wrap" scroll-x="true">
+    <view class="cu-avatar round margin-left"
+      style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+    <view class="cu-avatar round margin-left"
+      style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+    <view class="cu-avatar round margin-left"
+      style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+    <view class="cu-avatar round margin-left"
+      style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+  </scroll-view> -->
   <view class='cu-tabbar-height'></view>
 </scroll-view>

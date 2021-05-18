@@ -1,0 +1,54 @@
+<!--
+min [number] 默认值 0, // 最小值
+max[number] 默认值 100, // 最大值
+int[boolean] 默认值 true, // 是否开启整数模式 ，false为小数模式  整数模式 step最小单位是 1 ，小数模式，step的最小单位是 0.1
+single[number] 默认值 10, // 单个格子的实际长度（单位px）
+h[number] 默认值 0,// 自定义高度 初始值为80
+active [null] 默认值 center ，// 自定义选中位置  （三个值 min, max ,center , 范围内合法数值）
+styles [object]  // 自定义卡尺颜色  注意： 仅支持 #dbdbdb  或者red  这种 颜色 不支持简写 如 #333
+默认值： {
+  line: '#dbdbdb',   // 刻度颜色
+  bginner: '#fbfbfb',  // 前景色颜色
+  bgoutside: '#dbdbdb',  // 背景色颜色
+  lineSelect: '#52b8f5',  // 选中线颜色
+  fontColor: '#404040',   // 刻度数字颜色
+  fontSize:16
+}
+  -->
+<!-- 横向 -->
+<view class='wrapper horizontal-box' id='scale-wrapper' style='background:{{styles.bgoutside}}'>
+  <view class='scale-mask' wx:if="{{scroll}}"></view>
+  <view class='zz' style='border-top-color:{{styles.lineSelect}}'></view>
+  <scroll-view class='scroll-view' scroll-x="true" scroll-left="{{centerNum}}" scroll-with-animation='{{true}}'
+    catchscroll="bindscroll">
+
+    <view class='scroll-wrapper'>
+      <!-- 左补白 -->
+      <view class='seat' style='width:{{(windowWidth-width)/2}}px;'></view>
+
+      <!-- 标尺容器 -->
+      <view class='scale-container'>
+        <view class='scale-wrapper'>
+          <view class='scale-avatar' wx:for="{{list}}" wx:key="{{index}}" style='height:{{width}}px;width:{{width}}px;'>
+            <view class="avatar" style="background-image:url({{item.url}});">
+            </view>
+          </view>
+          <view wx:if="{{list.length==0}}" class='scale-avatar' style='height:{{width}}px;width:{{width}}px;'>
+          <view class="avatar plus">
+            <text class="">+</text>
+          </view>
+        </view>
+        </view>
+      </view>
+
+      <!-- 右补白 -->
+      <view class='seat' style='width:{{(windowWidth-width)/2}}px;'>
+        <view wx:if="{{list.length>0}}" class='scale-avatar' style='height:{{width}}px;width:{{width}}px;'>
+          <view class="avatar plus">
+            <text class="">+</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

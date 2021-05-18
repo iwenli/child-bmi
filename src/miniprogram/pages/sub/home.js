@@ -9,17 +9,18 @@ let chart = null;
 
 function initChart(canvas, width, height, F2) {
   F2.Global.setTheme({
-  colors: [ '#F04864', '#D66BCA', '#8543E0', '#8E77ED', '#3436C7', '#737EE6', '#223273', '#7EA2E6' ],
-  pixelRatio: 20,
-  axis: {
-  label: (text, index, total) => {
-    const cfg = {
-      textAlign: 'center',
-      fill: 'rgba(255,255,255, 0.6)',
-    };
-    return cfg;
-  }}
-});
+    colors: ['#F04864', '#D66BCA', '#8543E0', '#8E77ED', '#3436C7', '#737EE6', '#223273', '#7EA2E6'],
+    pixelRatio: 20,
+    axis: {
+      label: (text, index, total) => {
+        const cfg = {
+          textAlign: 'center',
+          fill: 'rgba(255,255,255, 0.6)',
+        };
+        return cfg;
+      }
+    }
+  });
   chart = new F2.Chart({
     el: canvas,
     width,
@@ -55,7 +56,17 @@ Component({
       onInit: initChart
     },
     curBaby: {},
-    babies: []
+    babies: [],
+
+    weight: 19.9,
+    styles: {
+      line: 'var(--main-color-50)',
+      bginner: 'transparent',
+      bgoutside: 'transparent',
+      fontColor: 'var(--main-color-80)',
+      lineSelect: 'var(--main-color-100)',
+      fontSize: 16
+    }
   },
 
   /**
@@ -90,7 +101,7 @@ Component({
     __getData() {
       let data = constData.BOY_7_HEIGHT.data
 
-      let minList = data.map((m,i) => {
+      let minList = data.map((m, i) => {
         return {
           type: '最小值',
           id: i,
@@ -98,7 +109,7 @@ Component({
           y: m.valueSD3_,
         }
       })
-       let maxList = data.map((m,i) => {
+      let maxList = data.map((m, i) => {
         return {
           type: '最大值',
           id: i,
@@ -122,40 +133,40 @@ Component({
         min: min,
         formatter: (id) => {
           let res = data.filter(m => m.id === id);
-          if (res && res.length === 2) return( res[0].x+'周' )|| 'NAN'
+          if (res && res.length === 2) return (res[0].x + '周') || 'NAN'
           return ''
         },
       });
       // chart.axis('id', false)
       // chart.axis('y', false)
-//       chart.axis('id', {
-//   label: (text, index, total) => {
-//     const cfg = {
-//       textAlign: 'center',
-//       fill: 'rgba(255,255,255, 0.6)',
-//     };
-//     // 第一个点左对齐，最后一个点右对齐，其余居中，只有一个点时左对齐
-//     if (index === 0) {
-//       cfg.textAlign = 'start';
-//     }
-//     if (index > 0 && index === total - 1) {
-//       cfg.textAlign = 'end';
-//     }
-//     // cfg.text 支持文本格式化处理
-//       // let res = data.filter(m => m.id === text*1);
-//       //     if (res && res.length === 2) cfg.text = ( res[0].x+'周' )|| ''
-//     return cfg;
-//   }
-// });
-// chart.axis('y', {
-//   label: (text, index, total) => {
-//     const cfg = {
-//       textAlign: 'center',
-//       fill: 'rgba(255,255,255, 0.6)',
-//     };
-//     return cfg;
-//   }
-// });
+      //       chart.axis('id', {
+      //   label: (text, index, total) => {
+      //     const cfg = {
+      //       textAlign: 'center',
+      //       fill: 'rgba(255,255,255, 0.6)',
+      //     };
+      //     // 第一个点左对齐，最后一个点右对齐，其余居中，只有一个点时左对齐
+      //     if (index === 0) {
+      //       cfg.textAlign = 'start';
+      //     }
+      //     if (index > 0 && index === total - 1) {
+      //       cfg.textAlign = 'end';
+      //     }
+      //     // cfg.text 支持文本格式化处理
+      //       // let res = data.filter(m => m.id === text*1);
+      //       //     if (res && res.length === 2) cfg.text = ( res[0].x+'周' )|| ''
+      //     return cfg;
+      //   }
+      // });
+      // chart.axis('y', {
+      //   label: (text, index, total) => {
+      //     const cfg = {
+      //       textAlign: 'center',
+      //       fill: 'rgba(255,255,255, 0.6)',
+      //     };
+      //     return cfg;
+      //   }
+      // });
 
 
 
@@ -242,6 +253,15 @@ Component({
         }, 350)
       }
     },
+
+    bindvalue(e) { //滑动回调
+      console.log(e)
+      const value = e.detail.value;
+      const key = e.currentTarget.id;
+      // const data = {};
+      // data[key] = value;
+      // this.setData(data);
+    },
   },
   lifetimes: {
     created() {
@@ -253,10 +273,9 @@ Component({
       })
 
       setTimeout(() => {
-      this._getTrends()
+        this._getTrends()
       }, 1000);
     },
-    ready() {
-    }
+    ready() {}
   }
 })

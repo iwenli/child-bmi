@@ -1,1 +1,6 @@
 /* pages/sub/home.wxss */
+
+.childs-wrap {
+  height: 100rpx;
+  background-color: rgba(0, 0, 0, .1);
+}

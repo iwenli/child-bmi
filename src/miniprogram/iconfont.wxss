@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2541108 */
-  src: url('//at.alicdn.com/t/font_2541108_y9csd66lyek.woff2?t=1621243889350') format('woff2'),
-       url('//at.alicdn.com/t/font_2541108_y9csd66lyek.woff?t=1621243889350') format('woff'),
-       url('//at.alicdn.com/t/font_2541108_y9csd66lyek.ttf?t=1621243889350') format('truetype');
+  src: url('//at.alicdn.com/t/font_2541108_b6lv5diwita.woff2?t=1621306989665') format('woff2'),
+       url('//at.alicdn.com/t/font_2541108_b6lv5diwita.woff?t=1621306989665') format('woff'),
+       url('//at.alicdn.com/t/font_2541108_b6lv5diwita.ttf?t=1621306989665') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,34 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-nvtizhong:before {
+  content: "\e602";
+}
+
+.icon---shengaotizhong:before {
+  content: "\e78d";
+}
+
+.icon---shentitizhong:before {
+  content: "\e794";
+}
+
+.icon-icon-manager-sport-fitness-weightlift:before {
+  content: "\e626";
+}
+
+.icon-tizhong:before {
+  content: "\e66a";
+}
+
+.icon-shengaotizhong:before {
+  content: "\e683";
+}
+
+.icon-height:before {
+  content: "\e6ea";
 }
 
 .icon-shengao:before {

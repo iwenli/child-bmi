@@ -2,6 +2,7 @@
 @import "assets/colorui/icon.wxss";
 @import "assets/fonts/mono.wxss";
 @import "./main.wxss";
+@import "./iconfont.wxss";
 
 /**app.wxss**/
 ff-canvas {

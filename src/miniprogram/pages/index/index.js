@@ -16,7 +16,8 @@ Page({
       key: '',
       name: '记录',
       icon: 'add',
-      action: true
+      action: true,
+      actionName: 'handleRecord'
     }, {
       key: 'my',
       name: '设置',
@@ -41,4 +42,9 @@ Page({
   NavChange(e) {
     this._go(e.currentTarget.dataset.cur)
   },
+  handleRecord(e) {
+    wx.navigateTo({
+      url: '/pages/sub/record',
+    })
+  }
 })

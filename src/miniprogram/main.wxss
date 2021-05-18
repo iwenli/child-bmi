@@ -8,6 +8,8 @@ page {
   --black-98: rgba(26, 26, 26, .98);
 
   --big-size: 100rpx;
+  --default-size: 80rpx;
+  --small-size: 60rpx;
 }
 
 .main-color-100 {
@@ -34,11 +36,28 @@ page {
   font-size: var(--big-size);
 }
 
+.main-text-default {
+  font-size: var(--default-size);
+}
+
+.main-text-small {
+  font-size: var(--small-size);
+}
 
 .scale-wrap {
   margin-top: 40rpx;
   border-radius: 16rpx;
   padding: 48rpx;
+}
+
+.scale-wrap-1 {
+  margin-top: 0;
+  border-radius: 16rpx;
+  padding: 0;
+}
+
+.scale-wrap:last-child {
+  margin-bottom: 40rpx
 }
 
 .scale-wrap .row {
@@ -64,5 +83,5 @@ page {
 }
 
 .scale-wrap .content {
-  margin-top:48rpx;
+  margin-top: 48rpx;
 }

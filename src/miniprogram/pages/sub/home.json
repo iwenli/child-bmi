@@ -1,5 +1,6 @@
 {
   "component": true,
   "usingComponents": {
+    "scale": "/components/w-avatar-scale/w-avatar-scale"
   }
 }
