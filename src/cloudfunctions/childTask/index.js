@@ -12,6 +12,8 @@ exports.main = async (event, context) => {
     subTime: _.lte(subTime)
   }).get()
 
+  const today = new Date();
+  const todayStr = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`
   list.data.forEach(async (item) => {
     let data = {
       "touser": item.openId,
@@ -19,7 +21,7 @@ exports.main = async (event, context) => {
       "page": "pages/index/index",
       "data": {
         "time1": {
-          "value": new Date()
+          "value": todayStr
         },
         "thing2": {
           "value": "身高体重记录"
