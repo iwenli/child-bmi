@@ -9,7 +9,7 @@ Page({
     DefaultColor: 'main-color-60',
     barItems: [{
       key: 'home',
-      name: '首页',
+      name: '数据',
       icon: 'home',
       action: false
     }, {
@@ -31,7 +31,6 @@ Page({
     }
   },
   _go(page) {
-    console.log(page)
     this.setData({
       PageCur: page
     })

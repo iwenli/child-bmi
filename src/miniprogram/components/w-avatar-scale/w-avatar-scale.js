@@ -24,8 +24,7 @@ Component({
   properties: {
     list: {
       type: Array,
-      value: [
-      ]
+      value: []
     },
     width: {
       type: Number,

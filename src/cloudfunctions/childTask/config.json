@@ -1,4 +1,5 @@
 {
+  
   "permissions": {
     "openapi": [
       "wxacode.getUnlimited",
@@ -10,5 +11,12 @@
       "templateMessage.getTemplateLibraryList",
       "templateMessage.send"
     ]
-  }
+  },
+  "triggers": [
+    {
+      "name": "sendSubscribeTrigger",
+      "type": "timer",
+      "config": "0 */10 * * * * *"
+    }
+  ]
 }

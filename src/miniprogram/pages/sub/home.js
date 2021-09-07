@@ -2,6 +2,11 @@ const apis = require('../../api/apis.js')
 const util = require('../../utils/util.js')
 const config = require('../../config.js')
 const constData = require('../../assets/datas/data')
+
+const {
+  getUserDetail
+} = require("../../api/childApis")
+
 const app = getApp()
 
 let context;
@@ -267,14 +272,12 @@ Component({
     created() {
       context = this;
     },
-    attached() {
+    async attached() {
       context.setData({
         app: config.application
       })
-
-      setTimeout(() => {
-        this._getTrends()
-      }, 1000);
+      const user = await getUserDetail()
+      this._getTrends()
     },
     ready() {}
   }

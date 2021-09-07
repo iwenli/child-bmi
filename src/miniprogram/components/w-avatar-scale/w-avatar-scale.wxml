@@ -29,7 +29,7 @@ styles [object]  // 自定义卡尺颜色  注意： 仅支持 #dbdbdb  或者re
       <!-- 标尺容器 -->
       <view class='scale-container'>
         <view class='scale-wrapper'>
-          <view class='scale-avatar' wx:for="{{list}}" wx:key="{{index}}" style='height:{{width}}px;width:{{width}}px;'>
+          <view class='scale-avatar' wx:for="{{list}}" wx:key="index" style='height:{{width}}px;width:{{width}}px;'>
             <view class="avatar" style="background-image:url({{item.url}});">
             </view>
           </view>
