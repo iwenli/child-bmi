@@ -2,10 +2,7 @@ const apis = require('../../api/apis.js')
 const util = require('../../utils/util.js')
 const config = require('../../config.js')
 const constData = require('../../assets/datas/data')
-
-const {
-  getUserDetail
-} = require("../../api/childApis")
+const services = require('../../utils/services')
 
 const app = getApp()
 
@@ -276,7 +273,8 @@ Component({
       context.setData({
         app: config.application
       })
-      const user = await getUserDetail()
+      const user = await services.user.getDetailWithCache();
+      console.log('当前用户', user)
       this._getTrends()
     },
     ready() {}

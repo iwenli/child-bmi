@@ -6,28 +6,29 @@ const db = cloud.database();
 exports.main = async (event, context) => {
   const logger = cloud.logger()
   const _ = db.command
-  const subTime = new Date(new Date() * 1 + 7 * 24 * 60 * 60 * 1000) // 7天
+  const days = 7 ; // 7天
+  const subTime = new Date(new Date() * 1 - days * 24 * 60 * 60 * 1000) 
   const list = await db.collection('c_subscribe').where({
     state: 0,
-    subTime: _.lte(subTime)
+    subTime: _.gte(subTime)   // > 
   }).get()
 
   const today = new Date();
   const todayStr = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`
   list.data.forEach(async (item) => {
     let data = {
-      "touser": item.openId,
-      "template_id": "WgfQr0MqXhAxJ7WCOg3yeRSxDnp5QXaMkignXOsa5FY",
-      "page": "pages/index/index",
-      "data": {
-        "time1": {
-          "value": todayStr
+      touser: item._openid,
+      template_id: item.tempId,
+      page: "pages/index/index",
+      data: {
+        time1: {
+          value: todayStr
         },
-        "thing2": {
-          "value": "身高体重记录"
+        thing2: {
+          value: "温馨提示"
         },
-        "thing3": {
-          "value": "您已超过7天未给宝宝记录身高体重啦，快来记录吧~"
+        thing3: {
+          value: "该给宝宝记录身高体重啦，快来记录吧~"
         }
       }
     }
@@ -44,14 +45,14 @@ exports.main = async (event, context) => {
       } else {
         logger.warn({
           tag: '发送订阅消息失败',
-          openId: item.openId,
+          _openid: item.openId,
           data: data
         })
       }
     } catch (err) {
       logger.error({
         tag: '发送订阅消息异常',
-        openId: item.openId,
+        _openid: item.openId,
         err: err.toString(),
         data: data
       })

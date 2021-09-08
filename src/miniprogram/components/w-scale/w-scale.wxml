@@ -35,13 +35,13 @@ styles [object]  // 自定义卡尺颜色  注意： 仅支持 #dbdbdb  或者re
         <view class='scale-wrapper'>
             <view class='scale-grip'
               wx:for="{{grid}}"
-              wx:key="{{index}}"
+              wx:key="index"
               style='height:{{h}}px;border-color:{{styles.line}};'>
               <view class='scale-grip-item' 
               wx:for-item="it"
               wx:for-index="idx"
               wx:for="{{10}}" 
-              wx:key="{{idx}}"
+              wx:key="idx"
               style="width:{{single}}px;height:{{idx==4?'80':'60'}}%;border-color:{{styles.line}};"
               >
             </view>
@@ -53,7 +53,7 @@ styles [object]  // 自定义卡尺颜色  注意： 仅支持 #dbdbdb  或者re
           <view class='scale-value first-scale-value' style='width:{{single*10}}px'>{{min}}</view>
           <view class='scale-vaule' 
           wx:for="{{grid}}" 
-          wx:key="{{index}}" 
+          wx:key="index" 
           style='width:{{single*10}}px'>{{min+10*(index+1)}}</view>
         </view>
       </view>
@@ -84,13 +84,13 @@ styles [object]  // 自定义卡尺颜色  注意： 仅支持 #dbdbdb  或者re
         <view class='scale-wrapper' style='height:{{single*10*grid}}px;padding-top:{{single*10/2}}px'>
           <view class='scale-grip'
               wx:for="{{grid}}"
-              wx:key="{{index}}"
+              wx:key="index"
               style='border-color:{{styles.line}};'>
               <view class='scale-grip-item' 
               wx:for-item="it"
               wx:for-index="idx"
               wx:for="{{10}}" 
-              wx:key="{{idx}}"
+              wx:key="idx"
               style="height:{{single}}px;width:{{(idx+1)%10==5?'70':((idx+1)%10==0)?'80':'60'}}%;border-color:{{styles.line}};"
               >
               </view>
@@ -102,7 +102,7 @@ styles [object]  // 自定义卡尺颜色  注意： 仅支持 #dbdbdb  或者re
           <view class='scale-value' style='height:{{single*10}}px;line-height:{{single*10}}px;'>{{min}}</view>
           <view class='scale-vaule' 
           wx:for="{{grid}}" 
-          wx:key="{{index}}" 
+          wx:key="index" 
           style='height:{{single*10}}px;line-height:{{single*10}}px;'>{{min+10*(index+1)}}</view>
         </view>
       </view>

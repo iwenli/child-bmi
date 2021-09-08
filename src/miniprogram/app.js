@@ -1,13 +1,13 @@
 //app.js
 const util = require('./utils/util')
 const config = require('./config')
-
 App({
-  onLaunch: function () {
+  onLaunch: async function () {
     wx.cloud.init({
       traceUser: true,
       env: config.envId
     })
+
 
     wx.getSystemInfo({
       success: e => {
@@ -22,8 +22,6 @@ App({
         } else {
           this.globalData.CustomBar = e.statusBarHeight + 50;
         }
-
-        this.getUserOpenIdViaCloud()
       }
     });
     // 加载字体
@@ -43,20 +41,5 @@ App({
     sysInfo: {},
     authorization: '',
     openId: ''
-  },
-  // 通过云函数获取用户 openid，支持回调或 Promise
-  getUserOpenIdViaCloud() {
-    if (this.globalData.openId) return
-    wx.login().then(res => {
-      return wx.cloud.callFunction({
-        name: 'wxContext',
-        data: {}
-      }).then(res => {
-        console.log('获取登录标识', res)
-        this.globalData.openId = res.result.openid
-        return res.result.openid
-      })
-    })
-
   }
 })

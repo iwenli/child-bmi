@@ -105,14 +105,29 @@ const cdnImageFormatHandler = {
 }
 
 /**
- * 缓存
+ * 缓存,带过期时间
  * 使用小程序 Storage
  */
 const cacheHandler = {
   claer: () => wx.clearStorageSync(),
-  set: (key, data) => wx.setStorageSync(key, data),
-  get: (key) => wx.getStorageSync(key),
-  info: () => wx.getStorageInfoSync()
+  info: () => wx.getStorageInfoSync(),
+  set: (key, data, expireSecond = 24 * 60 * 60) => {
+    expireSecond = expireSecond * 1
+    const expiredTime = expireSecond > 0 ? new Date(new Date() * 1 + expireSecond * 1000) : null
+    wx.setStorageSync(key, {
+      expiredTime: expiredTime,
+      data: data
+    })
+  },
+  get: (key) => {
+    const res = wx.getStorageSync(key)
+    if (res.expiredTime && new Date(res.expiredTime) < new Date()) {
+      // 过期了
+      wx.removeStorageSync(key)
+      return undefined
+    }
+    return res.data;
+  }
 }
 
 module.exports = {

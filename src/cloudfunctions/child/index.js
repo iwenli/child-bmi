@@ -12,7 +12,6 @@ const apiList = {
     record: '记录数据',
 
     subscribe: '订阅消息',
-    subscribeTimer: '订阅消息定时器',
     summaryData: '设置-统计数据',
 }
 exports.main = async (event, context) => {

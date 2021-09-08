@@ -44,7 +44,7 @@ const call = async (apiName = 'mateData', params = {}, showLoading = true) => {
 
 module.exports = {
   mateData: () => call(),
-  getUserDetail: () => call('users'),
+  getUserDetail: (params) => call('users', params),
   getChildDetail: (childId) => call('childDetail', {
     childId
   }, false),
