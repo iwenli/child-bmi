@@ -47,9 +47,16 @@ module.exports = {
   getUserDetail: (params) => call('users', params),
   getChildDetail: (childId) => call('childDetail', {
     childId
-  }, false),
-  addChild: (params) => call('childDetail', params),
+  }),
+  deleteChild: (childId) => call('childDelete', {
+    childId
+  }),
+  getChildList: () => call('childList'),
+  addChild: (params) => call('addChild', params),
   addRecord: (params) => call('record', params),
+  getRecordList: (childId) => call('recordList', {
+    childId
+  }),
   subscribe: (params) => call('subscribe', params),
   summaryData: () => call('summaryData'),
 }

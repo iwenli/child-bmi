@@ -4,7 +4,6 @@
   int[boolean] 默认值 true, // 是否开启整数模式 ，false为小数模式  整数模式 step最小单位是 1 ，小数模式，step的最小单位是 0.1
   single[number] 默认值 10, // 单个格子的实际长度（单位px）
   h[number] 默认值 0,// 自定义高度 初始值为80
-  active[null] 默认值 center ，// 自定义选中位置  （三个值 min, max ,center , 范围内合法数值）
   styles[object]  // 自定义卡尺样式
 */
 
@@ -34,15 +33,9 @@ Component({
       type: Number,
       value: 0
     },
-
-
     scroll: { //是否禁止滚动
       type: Boolean,
       value: false
-    },
-    active: {
-      type: null,
-      value: '0',
     },
     // 当前选中 
     styles: {
@@ -57,7 +50,8 @@ Component({
    */
   data: {
     rul: {},
-    windowHeight: 0
+    windowHeight: 0,
+    children: []
   },
 
   ready() {
@@ -67,11 +61,14 @@ Component({
       min,
       max
     });
-    this.init();
+    this.init(this.data.list);
   },
 
   methods: {
-    init() {
+    init(list) {
+      this.setData({
+        children: list
+      })
       const centerNum = this.data.width * this.data.index
       setTimeout(() => {
         this.setData({
@@ -102,8 +99,8 @@ Component({
           value += 1
         }
         if (value === this.data.index) return
-        if (value > this.data.list.length - 1) {
-          value = this.data.list.length - 1
+        if (value > this.data.children.length - 1) {
+          value = this.data.children.length - 1
         }
         const centerNum = this.data.width * value
         this.setData({
@@ -111,10 +108,13 @@ Component({
           index: value
         })
         this.triggerEvent('value', {
-          value: value
+          value: this.data.children[value]
         });
       }, 200)
 
+    },
+    handleAdd(e) {
+      this.triggerEvent('add');
     }
   }
 })

@@ -1,0 +1,30 @@
+<!--miniprogram/pages/sub/child.wxml-->
+<cu-custom bgColor="bg-gray" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">我家宝贝</view>
+</cu-custom>
+<view wx:if="{{list.length <= 0}}" class="bg-white padding padding-tb-xl text-gray text-center">
+  <view class="cuIcon-calendar" style="font-size:88rpx;color:#efefef"> </view>
+  <view>暂无数据</view>
+</view>
+<view wx:else class="cu-list menu sm-border">
+  <view wx:for="{{list}}" wx:key="_id" class="cu-item arrow">
+    <view class="padding-tb-sm content flex" data-id="{{item._id}}" bindtap="handleDetail">
+      <view class="cu-avatar round" style="background-image:url({{item.avatarUrl}});">
+        <view class="cu-tag badge {{item.sex == 2?'cuIcon-female bg-pink':'cuIcon-male bg-blue'}}"></view>
+      </view>
+      <view class="margin-left text-grey" style="line-height:64rpx">
+        <text>{{item.name}}</text>
+        <text class="padding-left-sm text-sm">{{item.birthdayDisplay}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="cu-bar foot padding-bottom" bindtap="handleDetail">
+  <view class="flex-sub">
+    <view class="action flex">
+      <text class="cuIcon-add text-grey"></text>
+      <text class="text-grey text-sm">添加宝贝</text>
+    </view>
+  </view>
+</view>

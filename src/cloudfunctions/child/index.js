@@ -7,9 +7,12 @@ cloud.init()
 
 const apiList = {
     users: '用户数据（用户&孩子）',
-    childDetail: '指定儿童身高体重数据详情',
     addChild: '添加儿童',
+    childDetail: '儿童详情',
+    childList: '儿童集合',
+    childDelete: '删除儿童',
     record: '记录数据',
+    recordList: '获取指定儿童身高体重数据详情',
 
     subscribe: '订阅消息',
     summaryData: '设置-统计数据',

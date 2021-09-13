@@ -1,3 +1,4 @@
+const util = require('../../utils/util')
 const {
   getStatistics
 } = require("../../api/apis")
@@ -42,8 +43,16 @@ Page({
     this._go(e.currentTarget.dataset.cur)
   },
   handleRecord(e) {
+    const child = util.cacheHandler.get('child_current')
+    if (!child) {
+      wx.showToast({
+        title: '请先添加宝贝信息',
+        icon: 'error'
+      })
+      return;
+    }
     wx.navigateTo({
-      url: '/pages/sub/record',
+      url: `/pages/sub/record`,
     })
   }
 })

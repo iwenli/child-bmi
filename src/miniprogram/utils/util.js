@@ -50,7 +50,24 @@ const formater = {
     const endDate = new Date((startDate / 1000 + (86400 * days)) * 1000)
     return `${formatDateToMontyDay(startDate)}\n~${formatDateToMontyDay(endDate)}`
   },
-  formatDateToMontyDay: formatDateToMontyDay
+  formatDateToMontyDay: formatDateToMontyDay,
+  formatBirthday: function (date) {
+    const diff = new Date() - new Date(date);
+    let days = parseInt(diff / (1000 * 60 * 60 * 24))
+    let ret = '';
+    if (days >= 365) {
+      ret += `${parseInt(days / 365)}岁`
+      days %= 365
+    }
+    if (days >= 7) {
+      ret += `${parseInt(days / 7)}周`
+      days %= 7
+    }
+    if (days > 0) {
+      ret += `${days}天`
+    }
+    return ret
+  }
 }
 
 // Promise化
@@ -112,7 +129,6 @@ const cacheHandler = {
   claer: () => wx.clearStorageSync(),
   info: () => wx.getStorageInfoSync(),
   set: (key, data, expireSecond = 24 * 60 * 60) => {
-    expireSecond = expireSecond * 1
     const expiredTime = expireSecond > 0 ? new Date(new Date() * 1 + expireSecond * 1000) : null
     wx.setStorageSync(key, {
       expiredTime: expiredTime,

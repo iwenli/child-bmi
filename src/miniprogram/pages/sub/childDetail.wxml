@@ -1,0 +1,49 @@
+<view class='cu-custom'>
+  <view class="cu-bar fixed text-white" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='cuIcon-back'></text>
+    </navigator>
+    <view class='content' style='top:{{StatusBar}}px;'>宝贝信息</view>
+  </view>
+</view>
+<view>
+  <view class="bg padding padding-bottom-lg" style="padding-top:{{StatusBar+49}}px;">
+    <view class="cu-avatar round image" bindtap="handleUploadImage">
+      <image class="round image-full" src="{{child.avatar}}"></image>
+      <view class="cu-tag badge cuIcon-cameraadd bg-grey"></view>
+    </view>
+  </view>
+  <form bindsubmit="handleSubmit">
+    <view class="text-sm text-gray padding padding-tb-sm">请填写宝贝数据</view>
+    <view class="cu-form-group">
+      <view class="title">称呼</view>
+      <input name="name" disabled="{{!!id}}" placeholder="必填" class="text-right" value="{{child.name}}"
+        bindinput="handleInput"></input>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">性别</view>
+      <picker  disabled="{{!!id}}" name="sex" bindchange="handleChangeSex" value="{{child.sex}}" end="{{today}}" range="{{picker}}">
+        <view class="picker">
+          {{picker[child.sex]||'请选择性别'}}
+        </view>
+      </picker>
+    </view>
+    <view class="cu-form-group">
+      <view class="title">出生日期</view>
+      <picker  disabled="{{!!id}}" name="birthDay" mode="date" value="{{child.birthDay}}" bindchange="handleChangeDate">
+        <view class="picker">
+          {{child.birthDay}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="padding-xl margin-top-xl">
+      <button wx:if="{{!!id}}" class="cu-btn block line-red lg" bindtap="handleDelete">
+        <text class="cuIcon-delete"></text>删除</button>
+      <button wx:else class="cu-btn block bg-green lg" formType="submit">
+        <text class="cuIcon-save iconfont-spin"></text>保存</button>
+    </view>
+  </form>
+
+  <view class="cu-tabbar-height"></view>
+</view>

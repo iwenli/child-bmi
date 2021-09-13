@@ -15,16 +15,6 @@ function ret(data, code = 0, msg = '') {
     result: data
   }
 }
-
-const apiList = {
-  users: '用户数据（用户&孩子）',
-  childDetail: '指定儿童身高体重数据详情',
-  addChild: '添加儿童',
-  record: '记录数据',
-
-  subscribe: '订阅消息',
-  summaryData: '设置-统计数据',
-}
 /**
  * 用户实体：
  * _openid,appId,unionId,createTime
@@ -94,10 +84,103 @@ const users = async (params, context, logger) => {
   })
 }
 
-const addChild = async (params, context) => {}
-const childDetail = async (params, context) => {}
-const record = async (params, context) => {}
-const summaryData = async (params, context) => {
+const addChild = async (params, context, logger) => {
+  if (!params.name || params.name.length < 1)
+    return ret(null, -1, '名字不能为空')
+  if (!params.avatar || params.avatar.length < 1)
+    return ret(null, -2, '请选择头像')
+  if (params.sex !== 1 && params.sex != 2)
+    return ret(null, -3, '非法性别')
+  if (!params.birthDay || params.birthDay.length < 1 || new Date(params.birthDay) > new Date())
+    return ret(null, -4, '出生日期非法')
+  const {
+    OPENID
+  } = cloud.getWXContext()
+  const child = {
+    _openid: OPENID,
+    name: params.name,
+    avatar: params.avatar,
+    sex: params.sex,
+    birthDay: new Date(params.birthDay),
+    createTime: new Date()
+  }
+  logger.error({
+    content: '组装数据',
+    data: child
+  })
+  child._id = (await db.collection('c_child').add({
+    data: child
+  }))._id
+  return ret(child, 0, '添加成功')
+}
+
+const childList = async (params, context, logger) => {
+  const {
+    OPENID
+  } = cloud.getWXContext()
+  const childRes = await db.collection('c_child').where({
+    _openid: OPENID
+  }).get()
+  return ret(childRes.data)
+}
+
+const childDetail = async (params, context, logger) => {
+  const {
+    childId
+  } = params
+  const res = await db.collection('c_child').doc(childId).get()
+  return ret(res.data)
+}
+const childDelete = async (params, context, logger) => {
+  const {
+    childId
+  } = params
+  const res = await db.collection('c_child').doc(childId).remove()
+  return ret(res)
+}
+/**
+ * 记录实体：
+ * _id,childId,height,weight,date,cteateTime
+ */
+/*
+ * 获取记录详情
+ * @param {*} params 
+ * @param {*} context 
+ */
+const recordList = async (params, context, logger) => {
+  const res = await db.collection('c_record').where({
+    childId: params.childId
+  }).get()
+
+  return ret(res.data)
+}
+const record = async (params, context, logger) => {
+  if (params.childId.length < 1)
+    return ret(null, -100, '非法请求')
+  if (params.height < 1)
+    return ret(null, -1, '法非身高值')
+  if (params.weight < 1)
+    return ret(null, -2, '法非体重值')
+  if (!params.date || params.date.length < 1 || new Date(params.date) > new Date())
+    return ret(null, -4, '非法日期')
+  const {
+    OPENID
+  } = cloud.getWXContext()
+
+  const model = {
+    _openid: OPENID,
+    childId: params.childId,
+    height: params.height,
+    weight: params.weight,
+    date: params.date,
+    createTime: new Date()
+  }
+  model._id = (await db.collection('c_record').add({
+    data: model
+  }))._id
+  return ret(model, 0, '记录成功')
+}
+const summaryData = async (params, context, logger) => {
   let userCount = (await db.collection('c_user').count()).total;
   let childCount = (await db.collection('c_child').count()).total;
   let subscribeCount = (await db.collection('c_subscribe').count()).total;
@@ -151,7 +234,10 @@ module.exports = {
   users,
   addChild,
   childDetail,
+  childList,
+  childDelete,
   record,
+  recordList,
   summaryData,
   subscribe
 }

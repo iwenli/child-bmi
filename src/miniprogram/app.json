@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/sub/record"
+    "pages/sub/record",
+    "pages/sub/child",
+    "pages/sub/childDetail"
   ],
   "window": {
     "navigationBarBackgroundColor": "#FFFFFF",

@@ -3,11 +3,15 @@ const util = require('../../utils/util.js')
 const config = require('../../config.js')
 const constData = require('../../assets/datas/data')
 const services = require('../../utils/services')
+const {
+  getRecordList
+} = require("../../api/childApis")
 
 const app = getApp()
 
 let context;
 let chart = null;
+let elAvatarScale = null;
 
 function initChart(canvas, width, height, F2) {
   F2.Global.setTheme({
@@ -57,10 +61,6 @@ Component({
     opts: {
       onInit: initChart
     },
-    curBaby: {},
-    babies: [],
-
-    weight: 19.9,
     styles: {
       line: 'var(--main-color-50)',
       bginner: 'transparent',
@@ -68,7 +68,11 @@ Component({
       fontColor: 'var(--main-color-80)',
       lineSelect: 'var(--main-color-100)',
       fontSize: 16
-    }
+    },
+    showModel: true,
+
+    curChild: {},
+    recordList: [],
   },
 
   /**
@@ -92,12 +96,6 @@ Component({
       this._getTrends()
     },
     _getTrends: function () {
-      // apis.getTrends(1, context.data.measure).then((data) => {
-      //   this.setData({
-      //     trends: data.result
-      //   });
-      //   context.__render()
-      // })
       context.__render()
     },
     __getData() {
@@ -194,12 +192,6 @@ Component({
           fontSize: 11,
         },
         onShow(ev) {
-          // const items = ev.items;
-          // debugger
-          // items[0].y = (items[0].y) + '';
-          // items[1].y = (items[1].y) + '';
-          // // items[0].name = '发放';
-          // // items[1].name = '消耗';
           ev.items.length = 2;
         }
       });
@@ -255,28 +247,60 @@ Component({
         }, 350)
       }
     },
-
-    bindvalue(e) { //滑动回调
-      console.log(e)
-      const value = e.detail.value;
-      const key = e.currentTarget.id;
-      // const data = {};
-      // data[key] = value;
-      // this.setData(data);
+    handleAddChild(e) {
+      wx.navigateTo({
+        url: '/pages/sub/child',
+      })
     },
+    handleChangeChild(e) {
+      context._changeChild(e.detail.value)
+    },
+    async _changeChild(child) {
+      util.cacheHandler.set('child_current', child, 0)
+      if (child) {
+        const recordList = (await getRecordList(child._id)).result || []
+        child.lastRecord = recordList[0]
+        context.setData({
+          recordList: recordList,
+          curChild: child
+        })
+      }
+      setTimeout(() => {
+        context._getTrends()
+      }, 500);
+    },
+    async _init() {
+      const user = await services.user.getDetailWithCache();
+      const children = await services.user.getChilds()
+      if (children && children.length > 0) {
+        elAvatarScale.init(children)
+      }
+      context._changeChild(children[0])
+    }
   },
   lifetimes: {
     created() {
       context = this;
+      elAvatarScale = context.selectComponent('#avatar-scale')
     },
     async attached() {
       context.setData({
         app: config.application
       })
-      const user = await services.user.getDetailWithCache();
-      console.log('当前用户', user)
-      this._getTrends()
+      context._init()
     },
     ready() {}
+  },
+  pageLifetimes: {
+    show: function () {
+      debugger
+    },
+    hide: function () {
+      // 页面被隐藏
+    },
+    resize: function (size) {
+      // 页面尺寸变化
+      debugger
+    }
   }
 })

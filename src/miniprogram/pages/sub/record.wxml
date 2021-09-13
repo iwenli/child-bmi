@@ -4,17 +4,21 @@
     <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
       <text class='cuIcon-back'></text> 返回
     </navigator>
-    <view class='content' style='top:{{StatusBar}}px;'>记录</view>
+    <view class='content' style='top:{{StatusBar}}px;'>{{child.name}}-数据记录</view>
   </view>
 </view>
 <view>
-  <view class="bg-gradual-green" style="height:{{CustomBar+StatusBar+30}}px"></view>
+  <view class="bg-gradual-green  text-center text-sm"
+    style="height:{{CustomBar+StatusBar+30}}px;line-height:{{CustomBar+StatusBar+30}}px">
+    <text>（{{child.birthdayDisplay}}）</text>
+  </view>
   <view class="bg-white page padding-sm padding-top"
     style="margin-top: -30px;min-height:calc(100vh - {{CustomBar+StatusBar}}px)">
     <view class="scale-wrap-1 flex align-ceter justify-between">
-      <picker class="cu-btn round main-bg-60 text-white" mode="date" value="{{date}}" start="1900-01-01" end="{{date}}" bindchange="bindDateChange">
+      <picker class="cu-btn round main-bg-60 text-white" mode="date" value="{{date}}" start="1900-01-01" end="{{date}}"
+        bindchange="bindDateChange">
         <view class="picker">
-          <text>{{date}}</text>  <text class="margin-left-sm cuIcon-edit"></text> 
+          <text>{{date}}</text> <text class="margin-left-sm cuIcon-edit"></text>
         </view>
       </picker>
       <button class="cu-btn round bg-gradual-green" bindtap="handleSubmit">保存</button>

@@ -1,0 +1,54 @@
+.bg {
+  background-image: url(https://632d-c-2g1d053l3360219f-1305877837.tcb.qcloud.la/static/images/bg1.jpg?sign=991f0dcd05f8c43202561a4a135f9332&t=1631158466);
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  font-weight: 300;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.bg text {
+  opacity: 0.8;
+}
+
+.bg .image {
+  width: 140rpx;
+  height: 140rpx;
+  display: block;
+  border: 1px solid rgba(greenyellow, 0.5);
+}
+
+.bg .image .image-full {
+  height: 100%;
+  width: 100%;
+}
+
+.bg .cu-tag[class*="cuIcon-"] {
+  width: 42rpx;
+  height: 42rpx;
+  top: 100rpx;
+  right: 0rpx;
+  padding: 10rpx;
+  font-size: 26rpx;
+  line-height: 26rpx;
+  text-align: center;
+}
+
+map,
+.mapBox {
+  left: 0;
+  z-index: 99;
+  mix-blend-mode: screen;
+  height: 100rpx;
+}
+
+map,
+.mapBox {
+  width: 750rpx;
+  height: 300rpx;
+}
