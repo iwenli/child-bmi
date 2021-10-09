@@ -10,33 +10,33 @@ const {
 const app = getApp()
 
 let context;
-let chart = null;
+// let chart = null;
 let elAvatarScale = null;
 
-function initChart(canvas, width, height, F2) {
-  F2.Global.setTheme({
-    colors: ['#F04864', '#D66BCA', '#8543E0', '#8E77ED', '#3436C7', '#737EE6', '#223273', '#7EA2E6'],
-    pixelRatio: 20,
-    axis: {
-      label: (text, index, total) => {
-        const cfg = {
-          textAlign: 'center',
-          fill: 'rgba(255,255,255, 0.6)',
-        };
-        return cfg;
-      }
-    }
-  });
-  chart = new F2.Chart({
-    el: canvas,
-    width,
-    height,
-    animate: true,
-    padding: [40, 10, 'auto', '25']
-  });
+// function initChart(canvas, width, height, F2) {
+//   F2.Global.setTheme({
+//     colors: ['#F04864', '#D66BCA', '#8543E0', '#8E77ED', '#3436C7', '#737EE6', '#223273', '#7EA2E6'],
+//     pixelRatio: 20,
+//     axis: {
+//       label: (text, index, total) => {
+//         const cfg = {
+//           textAlign: 'center',
+//           fill: 'rgba(255,255,255, 0.6)',
+//         };
+//         return cfg;
+//       }
+//     }
+//   });
+//   chart = new F2.Chart({
+//     el: canvas,
+//     width,
+//     height,
+//     animate: true,
+//     padding: [40, 10, 'auto', '25']
+//   });
 
-  return chart;
-}
+//   return chart;
+// }
 
 Component({
   options: {
@@ -58,9 +58,7 @@ Component({
     CustomBar: app.globalData.CustomBar,
     triggered: false,
     measure: 1,
-    opts: {
-      onInit: initChart
-    },
+    historyList: [],
     styles: {
       line: 'var(--main-color-50)',
       bginner: 'transparent',
@@ -92,122 +90,7 @@ Component({
       this.setData({
         measure: measure
       });
-
-      this._getTrends()
-    },
-    _getTrends: function () {
-      context.__render()
-    },
-    __getData() {
-      let data = constData.BOY_7_HEIGHT.data
-
-      let minList = data.map((m, i) => {
-        return {
-          type: '最小值',
-          id: i,
-          x: m.key,
-          y: m.valueSD3_,
-        }
-      })
-      let maxList = data.map((m, i) => {
-        return {
-          type: '最大值',
-          id: i,
-          x: m.key,
-          y: m.valueSD3,
-        }
-      })
-      return [...maxList, ...minList]
-    },
-    __render: function () {
-      if (!chart) return
-      chart.clear(); // 清除
-      let data = context.__getData()
-      let tickCount = 4;
-      let max = data[data.length - 1].id;
-      let min = data[data.length - 1 - tickCount].id;
-      chart.source(data);
-
-      chart.scale('id', {
-        max: max,
-        min: min,
-        formatter: (id) => {
-          let res = data.filter(m => m.id === id);
-          if (res && res.length === 2) return (res[0].x + '周') || 'NAN'
-          return ''
-        },
-      });
-      // chart.axis('id', false)
-      // chart.axis('y', false)
-      //       chart.axis('id', {
-      //   label: (text, index, total) => {
-      //     const cfg = {
-      //       textAlign: 'center',
-      //       fill: 'rgba(255,255,255, 0.6)',
-      //     };
-      //     // 第一个点左对齐，最后一个点右对齐，其余居中，只有一个点时左对齐
-      //     if (index === 0) {
-      //       cfg.textAlign = 'start';
-      //     }
-      //     if (index > 0 && index === total - 1) {
-      //       cfg.textAlign = 'end';
-      //     }
-      //     // cfg.text 支持文本格式化处理
-      //       // let res = data.filter(m => m.id === text*1);
-      //       //     if (res && res.length === 2) cfg.text = ( res[0].x+'周' )|| ''
-      //     return cfg;
-      //   }
-      // });
-      // chart.axis('y', {
-      //   label: (text, index, total) => {
-      //     const cfg = {
-      //       textAlign: 'center',
-      //       fill: 'rgba(255,255,255, 0.6)',
-      //     };
-      //     return cfg;
-      //   }
-      // });
-
-
-
-      chart.tooltip({
-        showCrosshairs: true,
-        showXTip: true,
-        crosshairsStyle: {
-          stroke: 'rgba(255,255,255, 0.6)',
-          lineWidth: 1
-        }, // 配置辅助线的样式
-        showItemMarker: false,
-        background: {
-          radius: 16,
-          fill: '#FFFFFF',
-          padding: [9, 16],
-        },
-        nameStyle: {
-          fill: '#4F86F7',
-          fontSize: 11,
-        },
-        valueStyle: {
-          fill: '#4F86F7',
-          fontSize: 11,
-        },
-        onShow(ev) {
-          ev.items.length = 2;
-        }
-      });
-
-      chart.area().position('id*y').color('type', ['l(-90) 0:#08B464 0.6:#4F86F7 1:#4F86F7', 'l(-90) 0:#08B464 0.8:#08B464 1:#FF6A5E']).shape('smooth');
-      chart.line().position('id*y').color('type', ['#4F86F7', '#FF6A5E']).shape('smooth');
-
-      chart.interaction('pan');
-      // 定义进度条
-      // chart.scrollBar({
-      //   mode: 'x',
-      //   xStyle: {
-      //     offsetY: -1
-      //   }
-      // });
-      chart.render();
+      context.__processHistory()
     },
     go: function (e) {
       const {
@@ -222,31 +105,31 @@ Component({
       } // 触发事件的选项
       this.triggerEvent('parentNavigateTo', myEventDetail, myEventOption)
     },
-    onRefresh() {
-      // 监听该页面用户下拉刷新事件
-      // 可以在触发时发起请求，请求成功后调用wx.stopPullDownRefresh()来结束下拉刷新
-      if (this._freshing) return
-      console.log('下拉刷新')
-      this._freshing = true
-      setTimeout(() => {
-        this.setData({
-          triggered: false,
-        })
-        this._freshing = false
-      }, 3000)
-    },
-    handleScroll(e) {
-      debugger
-      // 防抖，优化性能
-      // 当滚动时，滚动条位置距离页面顶部小于设定值时，触发下拉刷新
-      // 通过将设定值尽可能小，并且初始化scroll-view组件竖向滚动条位置为设定值。来实现下拉刷新功能，但没有官方的体验好
-      clearTimeout(this.timer)
-      if (e.detail.scrollTop < this.data.scrollTop) {
-        this.timer = setTimeout(() => {
-          this.refresh()
-        }, 350)
-      }
-    },
+    // onRefresh() {
+    //   // 监听该页面用户下拉刷新事件
+    //   // 可以在触发时发起请求，请求成功后调用wx.stopPullDownRefresh()来结束下拉刷新
+    //   if (this._freshing) return
+    //   console.log('下拉刷新')
+    //   this._freshing = true
+    //   setTimeout(() => {
+    //     this.setData({
+    //       triggered: false,
+    //     })
+    //     this._freshing = false
+    //   }, 3000)
+    // },
+    // handleScroll(e) {
+    //   debugger
+    //   // 防抖，优化性能
+    //   // 当滚动时，滚动条位置距离页面顶部小于设定值时，触发下拉刷新
+    //   // 通过将设定值尽可能小，并且初始化scroll-view组件竖向滚动条位置为设定值。来实现下拉刷新功能，但没有官方的体验好
+    //   clearTimeout(this.timer)
+    //   if (e.detail.scrollTop < this.data.scrollTop) {
+    //     this.timer = setTimeout(() => {
+    //       this.refresh()
+    //     }, 350)
+    //   }
+    // },
     handleAddChild(e) {
       wx.navigateTo({
         url: '/pages/sub/child',
@@ -264,10 +147,8 @@ Component({
           recordList: recordList,
           curChild: child
         })
+        context.__processHistory()
       }
-      setTimeout(() => {
-        context._getTrends()
-      }, 500);
     },
     async _init() {
       const user = await services.user.getDetailWithCache();
@@ -276,6 +157,20 @@ Component({
         elAvatarScale.init(children)
       }
       context._changeChild(children[0])
+    },
+    __processHistory() {
+      const measure = context.data.measure // 1身高 2体重
+      const recordList = context.data.recordList
+      const list = recordList.map(m => {
+        return {
+          Key: m.date + `（${util.formater.formatBirthday(context.data.curChild.birthDay,new Date(m.date))}）`,
+          Value: measure === 1 ? m.height : m.weight
+        }
+      })
+      if (list.length > 5) list.length = 5
+      context.setData({
+        historyList: list
+      })
     }
   },
   lifetimes: {
@@ -292,8 +187,14 @@ Component({
     ready() {}
   },
   pageLifetimes: {
-    show: function () {
-      debugger
+    show: async function () {
+      if (context.data.curChild._id) {
+        const children = await services.user.getChilds()
+        if (children && children.length > 0) {
+          elAvatarScale.init(children)
+        }
+        context._changeChild(context.data.curChild)
+      }
     },
     hide: function () {
       // 页面被隐藏

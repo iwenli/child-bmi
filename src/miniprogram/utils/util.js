@@ -51,8 +51,8 @@ const formater = {
     return `${formatDateToMontyDay(startDate)}\n~${formatDateToMontyDay(endDate)}`
   },
   formatDateToMontyDay: formatDateToMontyDay,
-  formatBirthday: function (date) {
-    const diff = new Date() - new Date(date);
+  formatBirthday: function (date, now = new Date()) {
+    const diff = now - new Date(date);
     let days = parseInt(diff / (1000 * 60 * 60 * 24))
     let ret = '';
     if (days >= 365) {

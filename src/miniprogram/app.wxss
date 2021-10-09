@@ -27,7 +27,7 @@ ff-canvas {
 
 .bt-group {
   width: 100%;
-  background: rgba(255,255,255,.98);
+  background: rgba(255, 255, 255, .98);
   border-radius: 48rpx;
   height: 60rpx;
   padding: 4rpx;
@@ -48,3 +48,62 @@ ff-canvas {
   color: white;
 }
 
+.card {
+  background: rgba(255, 255, 255, .2);
+  border-radius: 16rpx;
+  padding: 48rpx;
+  margin: 32rpx;
+}
+
+.card:first-child {
+  margin-top: 42rpx;
+}
+
+.card .title {
+  font-size: 42rpx;
+  line-height: 42rpx;
+  letter-spacing: 1px;
+  font-family: 'TTQinYuanJ-W4';
+}
+
+.card>.title.arrow {
+  position: relative;
+  color: var(--sub-color-80);
+}
+
+.card>.title.arrow::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  margin: auto;
+  width: 30rpx;
+  height: 30rpx;
+  content: "\e6a3";
+  text-align: center;
+  font-size: 42rpx;
+  font-family: "cuIcon";
+  line-height: 42rpx;
+  color: var(--sub-color-60);
+}
+
+/* progress{
+  width: 100%;
+} */
+
+.card .remark {
+  font-size: 24rpx;
+  line-height: 24rpx;
+  color: var(--sub-color-50);
+  margin-top: 48rpx;
+}
+
+
+.card .row {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: space-between;
+  max-width: 100%;
+}
