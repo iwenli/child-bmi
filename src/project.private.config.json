@@ -41,6 +41,12 @@
           "pathName": "pages/sub/history",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/sub/standard",
+          "pathName": "pages/sub/standard",
+          "query": "",
+          "scene": null
         }
       ]
     }

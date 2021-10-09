@@ -1,0 +1,127 @@
+<view class='cu-custom'>
+  <view class="cu-bar fixed text-white" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='cuIcon-back'></text> 返回
+    </navigator>
+    <view class='content' style='top:{{StatusBar}}px;'>儿童发育参照标准</view>
+  </view>
+</view>
+<scroll-view scroll-y="true" class="bg-gradual-green" style="height:100vh;padding-top:{{CustomBar}}px;">
+  <view class="card">
+    <view class="title">7岁以下男孩身长(身高)标准值</view>
+    <view class="desc">单位：cm</view>
+    <view class="table-outer-box">
+      <view class="table table-theme table-flex">
+        <view class="item" wx:for="{{tableArr}}" wx:key="{{index}}">{{item}}</view>
+      </view>
+      <scroll-view class="scroll-view flex-column" scroll-y="true" bindscrolltolower="loadMore">
+        <view class="table table-item table-flex" wx:for="{{tables.BOY_7_HEIGHT.data}}" wx:key="{{index}}">
+          <view class="item" wx:for="{{item}}" wx:key="{{index}}">{{item}}</view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <view class="card">
+    <view class="title">7岁以下男孩体重标准值</view>
+    <view class="desc">单位：kg</view>
+    <view class="table-outer-box">
+      <view class="table table-theme table-flex">
+        <view class="item" wx:for="{{tableArr}}" wx:key="{{index}}">{{item}}</view>
+      </view>
+      <scroll-view class="scroll-view flex-column" scroll-y="true" bindscrolltolower="loadMore">
+        <view class="table table-item table-flex" wx:for="{{tables.BOY_7_WEIGHT.data}}" wx:key="{{index}}">
+          <view class="item" wx:for="{{item}}" wx:key="{{index}}">{{item}}</view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  
+  <view class="card">
+    <view class="title">身长45-110厘米男孩体重标准值</view>
+    <view class="desc">单位：kg</view>
+    <view class="table-outer-box">
+      <view class="table table-theme table-flex">
+        <view class="item" wx:for="{{tableArr}}" wx:key="{{index}}">{{item}}</view>
+      </view>
+      <scroll-view class="scroll-view flex-column" scroll-y="true" bindscrolltolower="loadMore">
+        <view class="table table-item table-flex" wx:for="{{tables.BOY_7_HW_1.data}}" wx:key="{{index}}">
+          <view class="item" wx:for="{{item}}" wx:key="{{index}}">{{item}}</view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  
+  <view class="card">
+    <view class="title">身高80-140厘米男孩体重标准值</view>
+    <view class="desc">单位：kg</view>
+    <view class="table-outer-box">
+      <view class="table table-theme table-flex">
+        <view class="item" wx:for="{{tableArr}}" wx:key="{{index}}">{{item}}</view>
+      </view>
+      <scroll-view class="scroll-view flex-column" scroll-y="true" bindscrolltolower="loadMore">
+        <view class="table table-item table-flex" wx:for="{{tables.BOY_7_HW_2.data}}" wx:key="{{index}}">
+          <view class="item" wx:for="{{item}}" wx:key="{{index}}">{{item}}</view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <view class="card">
+    <view class="title">7岁以下女孩身长(身高)标准值</view>
+    <view class="desc">单位：cm</view>
+    <view class="table-outer-box">
+      <view class="table table-theme table-flex">
+        <view class="item" wx:for="{{tableArr}}" wx:key="{{index}}">{{item}}</view>
+      </view>
+      <scroll-view class="scroll-view flex-column" scroll-y="true" bindscrolltolower="loadMore">
+        <view class="table table-item table-flex" wx:for="{{tables.GRIL_7_HEIGHT.data}}" wx:key="{{index}}">
+          <view class="item" wx:for="{{item}}" wx:key="{{index}}">{{item}}</view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <view class="card">
+    <view class="title">7岁以下女孩体重标准值</view>
+    <view class="desc">单位：kg</view>
+    <view class="table-outer-box">
+      <view class="table table-theme table-flex">
+        <view class="item" wx:for="{{tableArr}}" wx:key="{{index}}">{{item}}</view>
+      </view>
+      <scroll-view class="scroll-view flex-column" scroll-y="true" bindscrolltolower="loadMore">
+        <view class="table table-item table-flex" wx:for="{{tables.GRIL_7_WEIGHT.data}}" wx:key="{{index}}">
+          <view class="item" wx:for="{{item}}" wx:key="{{index}}">{{item}}</view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  
+  <view class="card">
+    <view class="title">身长45-110厘米女孩体重标准值</view>
+    <view class="desc">单位：kg</view>
+    <view class="table-outer-box">
+      <view class="table table-theme table-flex">
+        <view class="item" wx:for="{{tableArr}}" wx:key="{{index}}">{{item}}</view>
+      </view>
+      <scroll-view class="scroll-view flex-column" scroll-y="true" bindscrolltolower="loadMore">
+        <view class="table table-item table-flex" wx:for="{{tables.GRIL_7_HW_1.data}}" wx:key="{{index}}">
+          <view class="item" wx:for="{{item}}" wx:key="{{index}}">{{item}}</view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  
+  <view class="card">
+    <view class="title">身高80-140厘米女孩体重标准值</view>
+    <view class="desc">单位：kg</view>
+    <view class="table-outer-box">
+      <view class="table table-theme table-flex">
+        <view class="item" wx:for="{{tableArr}}" wx:key="{{index}}">{{item}}</view>
+      </view>
+      <scroll-view class="scroll-view flex-column" scroll-y="true" bindscrolltolower="loadMore">
+        <view class="table table-item table-flex" wx:for="{{tables.GRIL_7_HW_2.data}}" wx:key="{{index}}">
+          <view class="item" wx:for="{{item}}" wx:key="{{index}}">{{item}}</view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <view class="padding text-center text-black">数据来源：卫生部妇幼保健与社区卫生司</view>
+</scroll-view>

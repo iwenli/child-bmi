@@ -3,4 +3,19 @@
 .childs-wrap {
   height: 100rpx;
   background-color: rgba(0, 0, 0, .1);
-} 
+}
+
+.btn-flex {
+  position: fixed;
+  right: 32rpx;
+  bottom: 180rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding: 0 36rpx;
+  color: rgb(11, 207, 86);
+  font-size: 32rpx;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(16px);
+  border-radius: 99px;
+}

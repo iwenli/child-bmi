@@ -48,3 +48,5 @@ refresher-enabled="false" refresher-default-style="black" refresher-background="
   </view>
   <view class='cu-tabbar-height'></view>
 </scroll-view>
+
+<view class="btn-flex" bindtap="handleStandard">发育参照标准</view>

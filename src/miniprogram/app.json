@@ -4,7 +4,8 @@
     "pages/sub/record",
     "pages/sub/child",
     "pages/sub/childDetail",
-    "pages/sub/history"
+    "pages/sub/history",
+    "pages/sub/standard"
   ],
   "window": {
     "navigationBarBackgroundColor": "#FFFFFF",

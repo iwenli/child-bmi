@@ -1,0 +1,57 @@
+.card {
+  padding: 20px 10px;
+}
+
+.card .title {
+  text-align: center;
+  font-size: 36rpx;
+}
+
+.card .desc {
+  padding-bottom: 30rpx;
+  opacity: 0.8;
+  text-align: center;
+}
+
+.table-outer-box {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.table {
+  color: rgb(255, 255, 255);
+  /* height: 80rpx;
+  line-height: 80rpx; */
+  line-height: 1.1rem;
+  border-bottom: 1rpx solid rgb(255, 255, 255);
+  text-align: center;
+}
+
+.table:last-child {
+  border-bottom: 0px;
+}
+
+.table-flex {
+  display: flex;
+}
+
+.table-theme {
+  font-size: 24rpx;
+}
+
+.table-item {
+  font-size: 22rpx;
+  opacity: 0.6;
+}
+
+.item {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  flex: 1;
+}
+
+.scroll-view {
+  flex: 1;
+}

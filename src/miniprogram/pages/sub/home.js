@@ -9,35 +9,9 @@ const {
 
 const app = getApp()
 
-let context;
-// let chart = null;
+let context; 
 let elAvatarScale = null;
-
-// function initChart(canvas, width, height, F2) {
-//   F2.Global.setTheme({
-//     colors: ['#F04864', '#D66BCA', '#8543E0', '#8E77ED', '#3436C7', '#737EE6', '#223273', '#7EA2E6'],
-//     pixelRatio: 20,
-//     axis: {
-//       label: (text, index, total) => {
-//         const cfg = {
-//           textAlign: 'center',
-//           fill: 'rgba(255,255,255, 0.6)',
-//         };
-//         return cfg;
-//       }
-//     }
-//   });
-//   chart = new F2.Chart({
-//     el: canvas,
-//     width,
-//     height,
-//     animate: true,
-//     padding: [40, 10, 'auto', '25']
-//   });
-
-//   return chart;
-// }
-
+ 
 Component({
   options: {
     addGlobalClass: true,
@@ -138,6 +112,11 @@ Component({
     handleShowHistory(e) {
       wx.navigateTo({
         url: '/pages/sub/history',
+      })
+    },
+    handleStandard(e){
+      wx.navigateTo({
+        url: '/pages/sub/standard',
       })
     },
     handleChangeChild(e) {
