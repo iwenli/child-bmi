@@ -1,0 +1,23 @@
+<view class='cu-custom'>
+  <view class="cu-bar fixed text-white" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='cuIcon-back'></text> 返回
+    </navigator>
+    <view class='content' style='top:{{StatusBar}}px;'>{{child.name}}-测量历史</view>
+  </view>
+</view>
+<view class="bg-gradual-green" style="height:100vh;padding-top:{{CustomBar}}px;">
+  <view class="card">
+    <view class="table-outer-box">
+      <view class="table table-theme table-flex">
+        <view class="item" wx:for="{{tableArr}}" wx:key="{{index}}">{{item}}</view>
+      </view>
+      <scroll-view class="scroll-view flex-column" scroll-y="true" bindscrolltolower="loadMore">
+        <view class="table table-item table-flex" wx:for="{{itemArr}}" wx:key="{{index}}">
+          <view class="item" wx:for="{{item}}" wx:key="{{index}}">{{item}}</view>
+        </view>
+      </scroll-view>
+    </view>
+
+  </view>
+</view>

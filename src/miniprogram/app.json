@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/sub/record",
     "pages/sub/child",
-    "pages/sub/childDetail"
+    "pages/sub/childDetail",
+    "pages/sub/history"
   ],
   "window": {
     "navigationBarBackgroundColor": "#FFFFFF",

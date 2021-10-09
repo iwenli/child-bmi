@@ -29,14 +29,14 @@ refresher-enabled="false" refresher-default-style="black" refresher-background="
     <view wx:else class="text-center margin-top" style="min-height: 164rpx;opacity:0.5;">
       <text class="main-text-big">无记录</text>
     </view>
-    <view  wx:if="{{recordList.length > 0}}" class="card">
+    <view wx:if="{{recordList.length > 0}}" class="card" bindtap="handleShowHistory">
       <view class="title arrow">测量历史</view>
       <view class="margin-top">
         <chart-column list="{{historyList}}"></chart-column>
       </view>
       <view class="remark row">
         <view class="greenLight">* 单位：<text>{{measure===1?'CM':'KG'}}</text></view>
-        <view wx:if="{{recordList.length > 5}}" >更多记录请点击这里^_^</view>
+        <view wx:if="{{recordList.length > 5}}">更多记录请点击这里^_^</view>
       </view>
     </view>
   </view>

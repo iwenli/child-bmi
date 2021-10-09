@@ -135,6 +135,11 @@ Component({
         url: '/pages/sub/child',
       })
     },
+    handleShowHistory(e) {
+      wx.navigateTo({
+        url: '/pages/sub/history',
+      })
+    },
     handleChangeChild(e) {
       context._changeChild(e.detail.value)
     },

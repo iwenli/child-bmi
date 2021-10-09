@@ -35,6 +35,12 @@
           "pathName": "pages/sub/childDetail",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/sub/history",
+          "pathName": "pages/sub/history",
+          "query": "",
+          "scene": null
         }
       ]
     }
