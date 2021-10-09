@@ -6,10 +6,10 @@
 <!-- 
 refresher-enabled="false" refresher-default-style="black" refresher-background="#08B464"
   bindscroll="handleScroll" bindrefresherrefresh="onRefresh" refresher-triggered="{{triggered}}" -->
-<scroll-view class="" style="height:calc(100vh - {{(CustomBar+StatusBar)}}px)">
-  <view class="main-bg-100 text-white padding-top">
+<scroll-view scroll-y="true" class="" style="height:calc(100vh - {{(CustomBar+StatusBar)}}px)">
+  <view class="main-bg-100 text-white padding-top padding-bottom-xs">
     <view class="text-center font-ttqy">
-      <text class="text-xl">{{curChild.name || '请先添加宝贝信息'}}</text>
+      <text class="text-xxl">{{curChild.name || '请先添加宝贝信息'}}</text>
       <text class="text-sm margin-left-xs">{{curChild.birthdayDisplay}}</text>
     </view>
     <view class="padding">
@@ -26,11 +26,18 @@ refresher-enabled="false" refresher-default-style="black" refresher-background="
       <text class="margin-left-xs text-sm font-ttqy">{{measure===1?'CM':'KG'}}</text>
       <view class="text-sm">上次测量：{{curChild.lastRecord.date}}</view>
     </view>
-    <view wx:else class="text-center margin-top">
-      <text class="main-text-big">暂无记录</text>
+    <view wx:else class="text-center margin-top" style="min-height: 164rpx;opacity:0.5;">
+      <text class="main-text-big">无记录</text>
     </view>
-    <view class="canvas margin-top-xl padding-top">
-      <ff-canvas id="scroll" canvas-id="scrollLine" opts="{{ opts }}"></ff-canvas>
+    <view  wx:if="{{recordList.length > 0}}" class="card">
+      <view class="title arrow">测量历史</view>
+      <view class="margin-top">
+        <chart-column list="{{historyList}}"></chart-column>
+      </view>
+      <view class="remark row">
+        <view class="greenLight">* 单位：<text>{{measure===1?'CM':'KG'}}</text></view>
+        <view wx:if="{{recordList.length > 5}}" >更多记录请点击这里^_^</view>
+      </view>
     </view>
   </view>
   <view class='scale-container horizontal'>

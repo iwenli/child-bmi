@@ -37,7 +37,7 @@ App({
     // }).then(console.log);
   },
   globalData: {
-    http: 'https://cytcrm.nestlechinese.com/ba/api/v1',
+    http: 'https://host',
     sysInfo: {},
     authorization: '',
     openId: ''

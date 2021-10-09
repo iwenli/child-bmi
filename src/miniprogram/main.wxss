@@ -10,6 +10,12 @@ page {
   --big-size: 100rpx;
   --default-size: 80rpx;
   --small-size: 60rpx;
+
+  --sub-color-100: rgba(0, 66, 2, 1);
+  --sub-color-80: rgba(0, 66, 2, .8);
+  --sub-color-60: rgba(0, 66, 2, .6);
+  --sub-color-50: rgba(0, 66, 2, .5);
+  --sub-color-20: rgba(0, 66, 2, .2);
 }
 
 .main-color-100 {

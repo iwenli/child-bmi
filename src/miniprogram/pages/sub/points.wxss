@@ -1,4 +1,0 @@
-/* pages/sub/points.wxss */
-.ff-canvas {
-  height: 600rpx;
-}

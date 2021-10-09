@@ -3,28 +3,28 @@
   background-color: transparent;
 }
 .warp .item {
-  padding: 24rpx 0 24rpx 4rpx;
+  padding: 14rpx 0 14rpx 4rpx;
 }
 .warp .item.select {
-  background: #EBEDF0;
+  background: var(--main-color-100);
 }
 .warp .item .key {
   font-size: 24rpx;
   line-height: 24rpx;
-  color: rgba(0, 42, 104, 0.8)
+  color: var(--sub-color-100);
 }
 
 .warp .item .draw {
-  margin-top: 16rpx;
+  margin-top: 8rpx;
 }
 
 .warp .item .article {
-  width: 75%;
+  width: 85%;
   display: inline-block;
 }
 
 .warp .item .article .col {
-  background: #4F86F7;
+  background: var(--sub-color-20);
   border-radius: 8rpx;
   height: 32rpx;
   width: 100%;
@@ -34,7 +34,7 @@
   font-size: 22rpx;
   line-height: 30rpx;
   position: absolute;
-  color: #4F86F7;
+  color: var(--sub-color-100);
   font-family: JetBrains Mono;
   display: inline;
   margin-left: 10rpx;
