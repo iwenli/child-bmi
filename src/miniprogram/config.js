@@ -2,18 +2,29 @@
  * 小程序配置文件
  */
 
-const host = '14592619.qcloud.la'
+const { miniProgram } = wx.getAccountInfoSync();
 
-const config = {
-  // 云开发环境 ID
-  envId: 'c-2g1d053l3360219f',
+console.warn('getAccountInfoSync', miniProgram)
+let env = miniProgram.envVersion || 'develop';
+
+let _domains = {
+  develop: "https://app.wenlis.com",
+  trial: "https://app.wenlis.com",
+  release: "https://app.wenlis.com",
+};
+ 
+
+export default {
+  env,
+
+  appId: miniProgram.appId,
+  domain: _domains[env],
+  apiUrl: _domains[env] + '/api',
 
   application: {
     name: '儿童身高体重记录助手',
     version: '1.0.1',
     author: 'iwenli',
   },
-  appreciationCode: 'https://imgtx.cn/2021/05/14/365162c4d672bb7bda55fd5b61047419.png' // 赞赏码
-}
-
-module.exports = config
+  appreciationCode: 'https://cdn.wenlis.com/wlapp/_upload/20260120/764791992967237.png' // 赞赏码
+};
