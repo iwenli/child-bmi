@@ -1,0 +1,14 @@
+{
+  "name": "iwenli-app-child",
+  "version": "1.0.0",
+  "description": "儿童身高体重记录",
+  "main": "index.js",
+  "repository": "https://github.com/iwenli/child-bmi",
+  "author": "iwenli",
+  "license": "MIT",
+  "dependencies": {
+    "minapp-iconfont": "^0.0.3",
+    "@antv/f2-canvas": "~1.0.5",
+    "@antv/wx-f2": "~1.1.4"
+  }
+}

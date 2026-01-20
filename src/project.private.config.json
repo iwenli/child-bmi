@@ -19,6 +19,6 @@
     "useIsolateContext": true
   },
   "condition": {},
-  "libVersion": "2.19.2",
+  "libVersion": "3.13.2",
   "projectname": "%E5%84%BF%E7%AB%A5%E8%BA%AB%E9%AB%98%E4%BD%93%E9%87%8D"
 }
