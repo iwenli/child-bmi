@@ -2,11 +2,11 @@
 const app = getApp()
 const util = require('../../utils/util')
 const service = require('../../utils/services')
-const {
-  addChild,
-  getChildDetail,
-  deleteChild
-} = require('../../api/childApis')
+// const {
+//   addChild,
+//   getChildDetail,
+//   deleteChild
+// } = require('../../api/childApis')
 
 let that;
 
@@ -53,11 +53,10 @@ Page({
   },
   async handleUploadImage(e) {
     if (!!that.data.id) return
-
-    const user = await service.user.getDetailWithCache();
-    const res = await service.file.chooseUploadImage(user.user._openid || '')
+    const res = await service.file.chooseUploadImage()
+    debugger
     that.setData({
-      'child.avatar': res.uploadFile.fileID
+      'child.avatar': res?.url ?? ''
     })
   },
   handleInput(e) {},

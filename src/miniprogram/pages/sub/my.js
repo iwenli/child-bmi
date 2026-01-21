@@ -1,8 +1,9 @@
-const config = require('../../config.js')
-const {
-  summaryData,
-  subscribe
-} = require("../../api/childApis")
+// const {
+//   summaryData,
+//   subscribe
+// } = require("../../api/childApis")
+
+const { default: config } = require("../../config");
 
 let that = null
 

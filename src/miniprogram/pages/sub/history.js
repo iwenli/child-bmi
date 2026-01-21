@@ -1,7 +1,7 @@
 const util = require("../../utils/util");
-const {
-  getRecordList
-} = require('../../api/childApis')
+// const {
+//   getRecordList
+// } = require('../../api/childApis')
 const app = getApp()
 let that;
 Page({

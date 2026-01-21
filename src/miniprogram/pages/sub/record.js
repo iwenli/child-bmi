@@ -1,7 +1,7 @@
 const util = require("../../utils/util");
-const {
-  addRecord
-} = require('../../api/childApis')
+// const {
+//   addRecord
+// } = require('../../api/childApis')
 
 const app = getApp()
 let that;

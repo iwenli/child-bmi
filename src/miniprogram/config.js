@@ -2,17 +2,20 @@
  * 小程序配置文件
  */
 
-const { miniProgram } = wx.getAccountInfoSync();
+const {
+  miniProgram
+} = wx.getAccountInfoSync();
 
 console.warn('getAccountInfoSync', miniProgram)
 let env = miniProgram.envVersion || 'develop';
 
 let _domains = {
-  develop: "https://app.wenlis.com",
+  develop: "https://localhost:5001",
+  // develop: "https://app.wenlis.com",
   trial: "https://app.wenlis.com",
   release: "https://app.wenlis.com",
 };
- 
+
 
 export default {
   env,
@@ -20,6 +23,13 @@ export default {
   appId: miniProgram.appId,
   domain: _domains[env],
   apiUrl: _domains[env] + '/api',
+
+  needAuthMobile: false,
+
+  pages: {
+    index: '/pages/index/index',
+    login: '/pages/user/login'
+  },
 
   application: {
     name: '儿童身高体重记录助手',

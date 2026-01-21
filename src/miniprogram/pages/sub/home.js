@@ -1,11 +1,7 @@
-const apis = require('../../api/apis.js')
 const util = require('../../utils/util.js')
 const config = require('../../config.js')
 const constData = require('../../assets/datas/data')
 const services = require('../../utils/services')
-const {
-  getRecordList
-} = require("../../api/childApis")
 
 const app = getApp()
 
@@ -125,7 +121,7 @@ Component({
     async _changeChild(child) {
       util.cacheHandler.set('child_current', child, 0)
       if (child) {
-        const recordList = (await getRecordList(child._id)).result || []
+        const recordList = [{}]
         child.lastRecord = recordList[0]
         context.setData({
           recordList: recordList,

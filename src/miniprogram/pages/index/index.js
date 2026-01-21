@@ -1,7 +1,4 @@
 const util = require('../../utils/util')
-const {
-  getStatistics
-} = require("../../api/apis")
 
 Page({
   data: {
