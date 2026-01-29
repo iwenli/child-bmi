@@ -44,7 +44,7 @@ Page({
     }
   },
   async loadData(id) {
-    let child = await getChildDetail(id)
+    let child = await api getChildDetail(id)
     child.result.sex -= 1
     child.result.birthDay = util.dateHandler.formatDate(new Date(child.result.birthDay), '-');
     that.setData({

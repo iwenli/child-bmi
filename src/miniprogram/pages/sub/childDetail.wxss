@@ -1,5 +1,5 @@
 .bg {
-  background-image: url(https://632d-c-2g1d053l3360219f-1305877837.tcb.qcloud.la/static/images/bg1.jpg?sign=991f0dcd05f8c43202561a4a135f9332&t=1631158466);
+  background: var(--gradualGreen);
   background-size: cover;
   display: flex;
   justify-content: center;

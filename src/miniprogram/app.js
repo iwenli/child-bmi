@@ -39,7 +39,7 @@ App({
     util.wxPro.loadFontFace({
       global: true,
       family: 'TTQinYuanJ-W4',
-      source: 'url("https://btx-1252047676.cos.ap-beijing.myqcloud.com/miniapp/image/member/hFhOZOLk7wzV23f8085d3c6dd7b4ad3814ebb06980c6.ttf")',
+      source: 'url("https://cdn.wenlis.com/upload-fd/wxe71b9e9e17760a42/2026/1/2xkW9dajx1sB23f8085d3c6dd7b4ad3814ebb06980c6.ttf")',
     }).then(console.log, console.log);
   },
   onShow(options) {

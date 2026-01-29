@@ -1,5 +1,5 @@
 .UCenter-bg {
-  background-image: url(https://btx-1252047676.cos.ap-beijing.myqcloud.com/miniapp/image/member/Peqdi4BDD7Ff8f55354eafd88bb15b5a3873d859bd68.jpg);
+  background-image: url(https://cdn.wenlis.com/upload-fd/wxe71b9e9e17760a42/2026/1/h-bZSirL9ywZ8f55354eafd88bb15b5a3873d859bd68.jpg);
   background-size: cover;
   min-height: 500rpx;
   display: flex;

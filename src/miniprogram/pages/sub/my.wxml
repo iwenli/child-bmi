@@ -13,7 +13,7 @@
     </view>
     <view class="text-sm">by:{{app.author}}</view>
     <image
-      src="https://btx-1252047676.cos.ap-beijing.myqcloud.com/miniapp/image/member/eJrOuxyzB4aWcbde6f5e83388a096d28fab7339d56fd.gif"
+      src="https://cdn.wenlis.com/upload-fd/wxe71b9e9e17760a42/2026/1/1i97YQxw29h9cbde6f5e83388a096d28fab7339d56fd.gif"
       mode="scaleToFill" class="gif-wave"></image>
   </view>
   <view class="padding flex text-center text-grey bg-white shadow-warp">

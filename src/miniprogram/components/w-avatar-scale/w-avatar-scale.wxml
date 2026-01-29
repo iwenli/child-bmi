@@ -32,7 +32,7 @@ styles [object]  // 自定义卡尺颜色  注意： 仅支持 #dbdbdb  或者re
           <view wx:if="{{children.length==0}}" class='scale-avatar' style='height:{{width}}px;width:{{width}}px;'
             bindtap="handleAdd">
             <view class="avatar plus">
-              <text class="">+</text>
+              <text class="">添加\n宝贝</text>
             </view>
           </view>
         </view>
@@ -43,7 +43,7 @@ styles [object]  // 自定义卡尺颜色  注意： 仅支持 #dbdbdb  或者re
         <view wx:if="{{children.length>0}}" class='scale-avatar' style='height:{{width}}px;width:{{width}}px;'
           bindtap="handleAdd">
           <view class="avatar plus">
-            <text class="">+</text>
+            <text class="">添加\n宝贝</text>
           </view>
         </view>
       </view>

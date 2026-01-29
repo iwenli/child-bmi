@@ -1,5 +1,6 @@
 import { LoginOutput } from ".";
-import { httpGet, httpPost } from "./request";
+import { getCurrentPageUrlWithArgs } from "../common/util";
+import { httpDel, httpGet, httpPost } from "./request";
 
 // api-doc https://app.wenlis.com/swagger/index.html
 
@@ -15,6 +16,22 @@ const user = {
   }
 };
 
+const child = {
+  list: async () => httpGet<any>("v1/children", {}, { loading: false }),
+  add: async (data: any) => httpPost<any>("v1/children", data, { loading: true }),
+  getDetail: async (id: number) => httpGet<any>(`v1/children/${id}`, {}, { loading: false }),
+  delete: async (id: number) => httpDel<any>(`v1/children/${id}`, {}, { loading: false }),
+
+  record: {
+    list: async (childId: number) => httpGet<any>(`v1/children/${childId}/growth-records`, {}, { loading: false }),
+    add: async (childId: number, data: any) => httpPost<any>(`v1/children/${childId}/growth-records`, data, { loading: true }),
+    delete: async (childId: number) => httpDel<any>(`v1/children/${childId}/growth-records`, {}, { loading: false }),
+  },
+
+  dashboard: {
+    summary: async () => httpGet<any>(`v1/children/dashboard/summary`, {}, { loading: false }),
+  }
+}
 
 const common = {
   /**
@@ -25,7 +42,14 @@ const common = {
     return httpPost<any>("v1/common/file/aliyunoss/formdata", { durationSeconds }, { loading: false });
   }
 };
+
+const subscribeTemplateMsg = {
+  list: async (appId: string) => httpGet<any>(`v1/mini/subscribe/templates`, { appId }, { loading: false }),
+  confirm: async (data: any) => httpPost<any>(`v1/mini/subscribe/confirm`, data, { loading: false }),
+}
 export default {
   user,
-  common
+  common,
+  child,
+  subscribeTemplateMsg
 };

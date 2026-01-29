@@ -1,27 +1,21 @@
 // miniprogram/pages/sub/child.js
-const service = require("../../utils/services")
+const { default: api } = require("../../apis/api");
 
 let that;
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     list: []
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
     that = this
   },
   async onShow() {
-    const childs = await service.user.getChilds()
+    const childRes =  await api.child.list()
     that.setData({
-      list: childs
+      list: [...childRes.data]
     })
   },
   handleDetail(e) {

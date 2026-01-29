@@ -3,6 +3,8 @@
 //   subscribe
 // } = require("../../api/childApis")
 
+import api from '../../apis/api'
+
 const { default: config } = require("../../config");
 
 let that = null
@@ -23,9 +25,8 @@ Component({
     that.setData({
       app: config.application
     })
+    const resp = await api.child.dashboard.summary()
 
-    const resp = await summaryData();
-    
     let i = 0;
     numDH();
 
@@ -42,9 +43,9 @@ Component({
         }, 20)
       } else {
         that.setData({
-          userCount: that.coutNum(resp.result.userCount),
-          babyCount: that.coutNum(resp.result.childCount),
-          subCount: that.coutNum(resp.result.subscribeCount)
+          userCount: that.coutNum(resp.data.userCount),
+          babyCount: that.coutNum(resp.data.childCount),
+          subCount: that.coutNum(resp.data.subscribeCount)
         })
       }
     }
@@ -87,14 +88,21 @@ Component({
       })
     },
     async handleSubscribe() {
-      const id = 'WgfQr0MqXhAxJ7WCOg3yeRSxDnp5QXaMkignXOsa5FY'
+      const res = await api.subscribeTemplateMsg.list(config.appId)
+
+      const tmpls = [...res.data]
+      if (!tmpls.length) return
+
       const subRes = await wx.requestSubscribeMessage({
-        tmplIds: [id]
+        tmplIds: tmpls.map(m => m.templateId)
       })
-      if (subRes[id] === 'accept') {
-        // 订阅消息
-        await subscribe({tmpId:id})
-      }
+      tmpls.forEach(tmpl => {
+        if (subRes[tmpl.templateId] === 'accept') {
+          // 订阅消息
+          api.subscribeTemplateMsg.confirm(tmpl)
+        }
+      });
+
     },
   }
 })

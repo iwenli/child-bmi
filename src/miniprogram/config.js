@@ -10,8 +10,8 @@ console.warn('getAccountInfoSync', miniProgram)
 let env = miniProgram.envVersion || 'develop';
 
 let _domains = {
-  develop: "https://localhost:5001",
-  // develop: "https://app.wenlis.com",
+  // develop: "https://localhost:5001",
+  develop: "https://app.wenlis.com",
   trial: "https://app.wenlis.com",
   release: "https://app.wenlis.com",
 };
