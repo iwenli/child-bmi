@@ -36,7 +36,9 @@
   overflow: hidden;
   flex: 1;
 }
-
+.item:first-child {
+  flex: 1.5;
+}
 .scroll-view {
   flex: 1;
 }

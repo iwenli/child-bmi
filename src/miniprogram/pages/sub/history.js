@@ -1,7 +1,5 @@
 const util = require("../../utils/util");
-// const {
-//   getRecordList
-// } = require('../../api/childApis')
+const { default: api } = require('../../apis/api.js')
 const app = getApp()
 let that;
 Page({
@@ -15,10 +13,11 @@ Page({
   async onLoad() {
     that = this
     const child = util.cacheHandler.get('child_current')
-    const recordList = (await getRecordList(child._id)).result || []
+    const recordRes = await api.child.record.list(child.id)
+    let recordList = recordRes.data || []
     const list = recordList.map(m => {
       return {
-        Key: m.date, // + `（${util.formater.formatBirthday(child.birthDay,new Date(m.date))}）`,
+        Key: m.createdTime, // + `（${util.formater.formatBirthday(child.birthDay,new Date(m.date))}）`,
         Height: m.height + 'cm',
         Weight: m.weight + 'kg',
       }

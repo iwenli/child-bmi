@@ -119,7 +119,7 @@ Component({
       const recordList = context.data.recordList
       const list = recordList.map(m => {
         return {
-          Key: m.date + `（${util.formater.formatBirthday(context.data.curChild.birthDay, new Date(m.date))}）`,
+          Key: m.createdTime + `（${util.formater.formatBirthday(context.data.curChild.birthDay, new Date(m.createdTime.replace(' ', 'T')))}）`,
           Value: measure === 1 ? m.height : m.weight
         }
       })
