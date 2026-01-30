@@ -1,7 +1,8 @@
 // miniprogram/pages/sub/childDetail.js
 const app = getApp()
 const util = require('../../utils/util')
-const service = require('../../utils/services')
+const service = require('../../utils/services');
+const { default: api } = require('../../apis/api');
 // const {
 //   addChild,
 //   getChildDetail,
@@ -44,22 +45,22 @@ Page({
     }
   },
   async loadData(id) {
-    let child = await api getChildDetail(id)
-    child.result.sex -= 1
-    child.result.birthDay = util.dateHandler.formatDate(new Date(child.result.birthDay), '-');
+    let childRes = await api.child.getDetail(id)
+    let child = childRes.data
+    child.sex -= 1
+    child.birthDay = util.dateHandler.formatDate(new Date(child.birthDay), '-');
     that.setData({
-      child: child.result
+      child: child
     })
   },
   async handleUploadImage(e) {
     if (!!that.data.id) return
     const res = await service.file.chooseUploadImage()
-    debugger
     that.setData({
       'child.avatar': res?.url ?? ''
     })
   },
-  handleInput(e) {},
+  handleInput(e) { },
   handleChangeSex(e) {
     console.log(e.detail.value);
     that.setData({
@@ -90,8 +91,8 @@ Page({
     if (!that.validationFormItem(data.sex >= 1 && data.sex <= 2, '请选择性别')) return false;
     if (!that.validationFormItem(data.avatar.length > 1, '请上传头像')) return false;
     if (!that.validationFormItem(new Date(data.birthDay) < new Date(), '请正确选择出生日期')) return false;
-    await addChild(data);
 
+    const res = await api.child.add(data)
     wx.navigateBack();
   },
   validationFormItem(validation, errMsg = '值不能为空') {

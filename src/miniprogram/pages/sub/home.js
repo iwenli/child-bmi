@@ -1,13 +1,14 @@
 const util = require('../../utils/util.js')
 const config = require('../../config.js')
 const constData = require('../../assets/datas/data')
-const services = require('../../utils/services')
+const { default: api } = require('../../apis/api.js')
+const { default: userStore } = require('../../store/userStore.js')
 
 const app = getApp()
 
-let context; 
+let context;
 let elAvatarScale = null;
- 
+
 Component({
   options: {
     addGlobalClass: true,
@@ -75,31 +76,6 @@ Component({
       } // 触发事件的选项
       this.triggerEvent('parentNavigateTo', myEventDetail, myEventOption)
     },
-    // onRefresh() {
-    //   // 监听该页面用户下拉刷新事件
-    //   // 可以在触发时发起请求，请求成功后调用wx.stopPullDownRefresh()来结束下拉刷新
-    //   if (this._freshing) return
-    //   console.log('下拉刷新')
-    //   this._freshing = true
-    //   setTimeout(() => {
-    //     this.setData({
-    //       triggered: false,
-    //     })
-    //     this._freshing = false
-    //   }, 3000)
-    // },
-    // handleScroll(e) {
-    //   debugger
-    //   // 防抖，优化性能
-    //   // 当滚动时，滚动条位置距离页面顶部小于设定值时，触发下拉刷新
-    //   // 通过将设定值尽可能小，并且初始化scroll-view组件竖向滚动条位置为设定值。来实现下拉刷新功能，但没有官方的体验好
-    //   clearTimeout(this.timer)
-    //   if (e.detail.scrollTop < this.data.scrollTop) {
-    //     this.timer = setTimeout(() => {
-    //       this.refresh()
-    //     }, 350)
-    //   }
-    // },
     handleAddChild(e) {
       wx.navigateTo({
         url: '/pages/sub/child',
@@ -110,7 +86,7 @@ Component({
         url: '/pages/sub/history',
       })
     },
-    handleStandard(e){
+    handleStandard(e) {
       wx.navigateTo({
         url: '/pages/sub/standard',
       })
@@ -121,7 +97,8 @@ Component({
     async _changeChild(child) {
       util.cacheHandler.set('child_current', child, 0)
       if (child) {
-        const recordList = [{}]
+        const recordRes = await api.child.record.list(child.id)
+        let recordList = recordRes.data || []
         child.lastRecord = recordList[0]
         context.setData({
           recordList: recordList,
@@ -131,8 +108,7 @@ Component({
       }
     },
     async _init() {
-      const user = await services.user.getDetailWithCache();
-      const children = await services.user.getChilds()
+      const children = [...userStore.state.children]
       if (children && children.length > 0) {
         elAvatarScale.init(children)
       }
@@ -143,7 +119,7 @@ Component({
       const recordList = context.data.recordList
       const list = recordList.map(m => {
         return {
-          Key: m.date + `（${util.formater.formatBirthday(context.data.curChild.birthDay,new Date(m.date))}）`,
+          Key: m.date + `（${util.formater.formatBirthday(context.data.curChild.birthDay, new Date(m.date))}）`,
           Value: measure === 1 ? m.height : m.weight
         }
       })
@@ -162,14 +138,15 @@ Component({
       context.setData({
         app: config.application
       })
+      await userStore.login()
       context._init()
     },
-    ready() {}
+    ready() { }
   },
   pageLifetimes: {
     show: async function () {
-      if (context.data.curChild._id) {
-        const children = await services.user.getChilds()
+      if (context.data.curChild.id) {
+        const children = [...userStore.state.children]
         if (children && children.length > 0) {
           elAvatarScale.init(children)
         }

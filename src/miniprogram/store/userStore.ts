@@ -2,6 +2,7 @@ import { LoginOutput } from "../apis"
 import api from "../apis/api";
 import { getCurrentPageUrlWithArgs } from "../common/util";
 import config from "../config";
+const util = require('../utils/util')
 
 
 const defaultUser: LoginOutput = {
@@ -23,6 +24,7 @@ const listeners: Listener[] = []
 const state = {
   user: { ...defaultUser },
   accessToken: '',
+  children: [],
 }
 
 const updateUserStore = (user: any) => {
@@ -35,6 +37,7 @@ const login = async (login_redirect = true) => {
     const res = await api.user.login({ code: loginRes.code })
     state.accessToken = res.data.accessToken
     await refreshData(login_redirect)
+    await refreshChildren()
   }
   return state.user
 }
@@ -48,6 +51,15 @@ const refreshData = async (login_redirect = true) => {
     return await toLogin()
   }
 }
+const refreshChildren = async () => {
+  const childrenRes = await api.child.list()
+  state.children = childrenRes.data || []
+  state.children.forEach((m: any) => {
+    m.birthdayDisplay = util.formater.formatBirthday(m.birthDay)
+    m.lastRecord = {}
+  });
+}
+
 const subscribe = (fn: Listener) => {
   listeners.push(fn)
   return () => {
@@ -90,4 +102,5 @@ export default {
   subscribe,
   logout,
   commonSrevice,
+  refreshChildren
 }

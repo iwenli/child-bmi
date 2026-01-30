@@ -8,9 +8,9 @@
   <view>暂无数据</view>
 </view>
 <view wx:else class="cu-list menu sm-border">
-  <view wx:for="{{list}}" wx:key="_id" class="cu-item arrow">
-    <view class="padding-tb-sm content flex" data-id="{{item._id}}" bindtap="handleDetail">
-      <view class="cu-avatar round" style="background-image:url({{item.avatarUrl}});">
+  <view wx:for="{{list}}" wx:key="id" class="cu-item arrow">
+    <view class="padding-tb-sm content flex" data-id="{{item.id}}" bindtap="handleDetail">
+      <view class="cu-avatar round" style="background-image:url({{item.avatar}});">
         <view class="cu-tag badge {{item.sex == 2?'cuIcon-female bg-pink':'cuIcon-male bg-blue'}}"></view>
       </view>
       <view class="margin-left text-grey" style="line-height:64rpx">

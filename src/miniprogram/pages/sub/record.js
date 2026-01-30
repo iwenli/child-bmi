@@ -1,7 +1,5 @@
+const { default: api } = require("../../apis/api");
 const util = require("../../utils/util");
-// const {
-//   addRecord
-// } = require('../../api/childApis')
 
 const app = getApp()
 let that;
@@ -34,8 +32,8 @@ Page({
     that.setData({
       date: util.dateHandler.formatDate(new Date(), '-'),
       child: child,
-      height: child.lastRecord.height || 50,
-      weight: child.lastRecord.weight || 3,
+      height: child?.lastRecord?.height || 50,
+      weight: child?.lastRecord?.weight || 3,
     })
   },
   bindvalue(e) { //滑动回调
@@ -59,13 +57,13 @@ Page({
       return
     }
     const data = {
-      childId: that.data.child._id,
+      childId: that.data.child.id,
       height: that.data.height * 1,
       weight: that.data.weight * 1,
       date: that.data.date,
     }
-    const res = await addRecord(data)
-    if (res.code === 0) {
+    const res = await api.child.record.add(that.data.child.id, data)
+    if (res.code === 204) {
       setTimeout(() => {
         wx.navigateBack({
           delta: 0,

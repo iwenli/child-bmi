@@ -26,7 +26,7 @@ styles [object]  // 自定义卡尺颜色  注意： 仅支持 #dbdbdb  或者re
       <view class='scale-container'>
         <view class='scale-wrapper'>
           <view class='scale-avatar' wx:for="{{children}}" wx:key="index" style='height:{{width}}px;width:{{width}}px;'>
-            <view class="avatar" style="background-image:url({{item.avatarUrl}});">
+            <view class="avatar" style="background-image:url({{item.avatar}});">
             </view>
           </view>
           <view wx:if="{{children.length==0}}" class='scale-avatar' style='height:{{width}}px;width:{{width}}px;'

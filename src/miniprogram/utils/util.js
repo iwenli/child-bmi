@@ -52,20 +52,31 @@ const formater = {
   },
   formatDateToMontyDay: formatDateToMontyDay,
   formatBirthday: function (date, now = new Date()) {
-    const diff = now - new Date(date);
-    let days = parseInt(diff / (1000 * 60 * 60 * 24))
-    let ret = '';
+    if (!date) return ''
+
+    // ✅ iOS 兼容处理
+    const safeDate = typeof date === 'string'
+      ? new Date(date.replace(/-/g, '/'))
+      : new Date(date)
+    const diff = now - safeDate
+ 
+    if (isNaN(diff) || diff < 0) return ''
+
+    let days = Math.floor(diff / (1000 * 60 * 60 * 24))
+    let ret = '新生儿'
+
     if (days >= 365) {
-      ret += `${parseInt(days / 365)}岁`
+      ret += `${Math.floor(days / 365)}岁`
       days %= 365
     }
     if (days >= 7) {
-      ret += `${parseInt(days / 7)}周`
+      ret += `${Math.floor(days / 7)}周`
       days %= 7
     }
     if (days > 0) {
       ret += `${days}天`
     }
+
     return ret
   }
 }
